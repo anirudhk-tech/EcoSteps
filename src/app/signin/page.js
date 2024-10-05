@@ -1,9 +1,6 @@
 'use client'
 import styled from 'styled-components';
-import Link from 'next/link';
 import Image from 'next/image';
-import { supabase } from '../../supabaseClient';
-import { useState } from 'react';
 import ForestLandscape from '@/app/public/background/ForestLandscape.png';
 import EcoStepsCoin from '@/app/public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
