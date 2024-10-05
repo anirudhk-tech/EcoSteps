@@ -1,22 +1,16 @@
 'use client'
 import '@fontsource/inter';
+import { Button } from "@mui/joy";
+import Link from "next/link";
 
 export default function Home() {
   return (
-        <div
-        style={{
-          display: 'flex',
-          gap: 200,
-          flexDirection: 'row',
-          backgroundColor: 'black',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100%',
-          width: '100%',
-        }}
-        >
-          <h1 className='pixel'>Hey, this is Pixel!</h1>
-        </div>
-        
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Link href="/pages/signin">
+        <Button variant="contained" color="primary">
+          Sign In
+        </Button>
+      </Link>
+    </div>
   );
 }
