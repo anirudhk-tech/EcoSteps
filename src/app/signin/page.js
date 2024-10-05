@@ -13,16 +13,20 @@ const SignIn = () => {
         <Title>EcoSteps Login</Title>
       </TitleBox>
       <LoginBox>
-        <Form>
+        <form>
           <FormPrompt>Email/Username</FormPrompt>
           <InputWrapper>
-            <Input type="text" onChange={(e) => setEmail(e.target.value)} />
+          <label htmlFor="email">Email:</label>
+          <input id="email" name="email" type="email" required />
           </InputWrapper>
           <FormPrompt>Password</FormPrompt>
           <InputWrapper>
-            <Input type="password" onChange={(e) => setPassword(e.target.value)} />
+          <label htmlFor="password">Password:</label>
+          <input id="password" name="password" type="password" required />
           </InputWrapper>
-        </Form>
+          <button formAction={login}>Log in</button>
+          <button formAction={signup}>Sign up</button>
+        </form>
         <BeginBox>
           <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
           <motion.div 
