@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '../utils/supabase/server'
 import { Box, Button, Grid, Paper, Typography } from '@mui/material'
+import Link from 'next/link'
 
 export default async function Dashboard() {
   const supabase = createClient()
@@ -33,9 +34,9 @@ export default async function Dashboard() {
             <Paper elevation={3} sx={{ padding: 3 }}>
               <Typography variant="h6">Tasks</Typography>
               <Typography variant="body1">You have no tasks today.</Typography>
-              <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
-                View All Tasks
-              </Button>
+              <Link href="/tasks">
+                <Button variant="contained">View Tasks</Button>
+              </Link>
             </Paper>
           </Grid>
 
