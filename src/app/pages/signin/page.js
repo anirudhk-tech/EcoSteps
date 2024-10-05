@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import supabase from '../supabaseClient'; // Assuming supabaseClient is properly set up
+import supabase from '../../supabaseClient'; // Assuming supabaseClient is properly set up
 import { useRouter } from 'next/router'; // Next.js's built-in router
 
 const SignIn = () => {
