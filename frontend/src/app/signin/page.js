@@ -1,52 +1,68 @@
 'use client'
 import styled from 'styled-components';
 import Image from 'next/image';
-import ForestLandscape from '../public/background/ForestLandscape.png';
+import ForestLandscape from '../public/background/forestLandscape.png';
 import EcoStepsCoin from '../public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
 import { login, signup } from './actions'
+import { useEffect, useState } from 'react';
 
 const SignIn = () => {
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setStart(true);
+    }, 500);
+  }, []);
+
   return (
-    <Container>
-      <TitleBox>
-        <Title>EcoSteps Login</Title>
-      </TitleBox>
-      <LoginBox>
-        <form>
-          <FormPrompt>Email/Username</FormPrompt>
-          <InputWrapper>
-          <input id="email" name="email" type="email" required />
-          </InputWrapper>
-          <FormPrompt>Password</FormPrompt>
-          <InputWrapper>
-          <input id="password" name="password" type="password" required />
-          </InputWrapper>
-        </form>
-        <BeginBox>
-          <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
-          <motion.div 
-            style={{marginTop: '-15vh'}}
-            animate={{marginTop: '-20vh'}}
-            transition={{
-              duration: '0.8',
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-            >
-              <form>
-                <button formAction={signup}>
-                  <Image 
-                  src={EcoStepsCoin} 
-                  alt="Click to begin!" 
-                  style={{scale: 0.7, height: '70vh'}}
-                  />
-                </button>
-              </form>
-          </motion.div>
-        </BeginBox>
-      </LoginBox>
-    </Container>
+    <motion.div
+    animate={start ? {opacity: 1.0} : {opacity: 0.0}}
+    transition={{
+      duration: start ? '1.0' : '0.0'
+    }}
+    >
+      <Container>
+        <TitleBox>
+          <Title>EcoSteps Login</Title>
+        </TitleBox>
+        <LoginBox>
+          <form>
+            <FormPrompt>Email/Username</FormPrompt>
+            <InputWrapper>
+            <input id="email" name="email" type="email" required />
+            </InputWrapper>
+            <FormPrompt>Password</FormPrompt>
+            <InputWrapper>
+            <input id="password" name="password" type="password" required />
+            </InputWrapper>
+          </form>
+          <BeginBox>
+            <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
+            <motion.div 
+              style={{marginTop: '-15vh'}}
+              animate={{marginTop: '-20vh'}}
+              transition={{
+                duration: '0.8',
+                repeat: Infinity,
+                repeatType: 'reverse',
+              }}
+              >
+                <form>
+                  <button formAction={signup}>
+                    <Image 
+                    src={EcoStepsCoin} 
+                    alt="Click to begin!" 
+                    style={{scale: 0.7, height: '70vh'}}
+                    />
+                  </button>
+                </form>
+            </motion.div>
+          </BeginBox>
+        </LoginBox>
+      </Container>
+    </motion.div>
   );
 };
 
@@ -100,14 +116,6 @@ const Title = styled.h1`
     0px  1px 0px #000,
     1px  1px 0px #000;
   font-size: 7vh;
-`;
-
-const Form = styled.div`
-  display: 'flex';
-  flex-direction: column;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
 `;
 
 const FormPrompt = styled.text`
