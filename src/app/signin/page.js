@@ -6,26 +6,10 @@ import { supabase } from '../../supabaseClient';
 import { useState } from 'react';
 import ForestLandscape from '@/app/public/background/ForestLandscape.png';
 import EcoStepsCoin from '@/app/public/web assets/EcoStepsCoin.png';
-import CutePlant from '@/app/public/web assets/CutePlant.png';
 import { motion } from 'framer-motion';
+import { login, signup } from './actions'
 
 const SignIn = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const { user, error } = await supabase.auth.signInWithPassword({ email, password });
-    
-    if (error) {
-      setError(error.message);
-    } else {
-      console.log('Login successful:', user);
-      navigate('/dashboard');
-    }
-  };
 
   return (
     <Container>
