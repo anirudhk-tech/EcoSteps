@@ -1,8 +1,8 @@
 'use client'
 import styled from 'styled-components';
 import Image from 'next/image';
-import ForestLandscape from '@/app/public/background/ForestLandscape.png';
-import EcoStepsCoin from '@/app/public/web assets/EcoStepsCoin.png';
+import ForestLandscape from '../public/background/ForestLandscape.png';
+import EcoStepsCoin from '../public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
 import { login, signup } from './actions'
 
