@@ -16,16 +16,12 @@ const SignIn = () => {
         <form>
           <FormPrompt>Email/Username</FormPrompt>
           <InputWrapper>
-          <label htmlFor="email">Email:</label>
           <input id="email" name="email" type="email" required />
           </InputWrapper>
           <FormPrompt>Password</FormPrompt>
           <InputWrapper>
-          <label htmlFor="password">Password:</label>
           <input id="password" name="password" type="password" required />
           </InputWrapper>
-          <button formAction={login}>Log in</button>
-          <button formAction={signup}>Sign up</button>
         </form>
         <BeginBox>
           <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
@@ -38,11 +34,15 @@ const SignIn = () => {
               repeatType: 'reverse',
             }}
             >
-            <Image 
-            src={EcoStepsCoin} 
-            alt="Click to begin!" 
-            style={{scale: 0.5, height: '70vh'}}
-            />
+              <form>
+                <button formAction={signup}>
+                  <Image 
+                  src={EcoStepsCoin} 
+                  alt="Click to begin!" 
+                  style={{scale: 0.7, height: '70vh'}}
+                  />
+                </button>
+              </form>
           </motion.div>
         </BeginBox>
       </LoginBox>

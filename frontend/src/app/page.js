@@ -31,7 +31,7 @@ export default function Home() {
         <p className={styles.groupNames}>Sam</p>
       </div>
 
-      {/* Arcade image section */}
+      
       <div className={styles.arcadeSection}>
         {/* Arcade image */}
         <Link href="/signin">
