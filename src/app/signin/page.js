@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { login, signup } from './actions'
 
 const SignIn = () => {
-
   return (
     <Container>
       <TitleBox>
