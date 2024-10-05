@@ -1,46 +1,21 @@
 'use client'
 import styled from 'styled-components';
-import Link from 'next/link';
-import { supabase } from '../../supabaseClient';
-import { useState } from 'react';
+import { login, signup } from './actions'
 
 const SignIn = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const { user, error } = await supabase.auth.signInWithPassword({ email, password });
-    
-    if (error) {
-      setError(error.message);
-    } else {
-      console.log('Login successful:', user);
-      navigate('/dashboard');
-    }
-  };
 
   return (
     <Container>
       <LoginBox>
         <Title>EcoSteps Login</Title>
-        <Form>
-          <InputWrapper>
-            <Input type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
-          </InputWrapper>
-          <InputWrapper>
-            <Input type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
-            <LeafIcon>🌱</LeafIcon>
-          </InputWrapper>
-          <ButtonWrapper>
-            <Link href="/pages/signup" passHref>
-              <Button>Sign Up</Button>
-            </Link>
-            <Button primary onClick={handleLogin}>Sign In</Button>
-          </ButtonWrapper>
-        </Form>
+        <form>
+          <label htmlFor="email">Email:</label>
+          <input id="email" name="email" type="email" required />
+          <label htmlFor="password">Password:</label>
+          <input id="password" name="password" type="password" required />
+          <button formAction={login}>Log in</button>
+          <button formAction={signup}>Sign up</button>
+        </form>
       </LoginBox>
     </Container>
   );

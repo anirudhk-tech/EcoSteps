@@ -1,33 +1,48 @@
-'use client';
-
-import '@fontsource/inter';  // For the custom font
-import { Button, Typography, Stack, Box } from "@mui/joy";  // Material UI components
-import Link from "next/link";
-import styles from './styles/Home.module.css';
+'use client'
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { createClient } from './utils/supabase/client';
+import styles from "./styles/Home.module.css";
+import Link from 'next/link';
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        router.push('/dashboard');
+      }
+    };
+
+    checkUser();
+  }, [router]);
+
   return (
     <div className={styles.container}>
-      <Typography variant="h2" component="h1" gutterBottom>
-        Welcome to EcoSteps
-      </Typography>
-      
-      <Typography variant="body1" gutterBottom className={styles.description}>
-        Start your journey towards an eco-friendly lifestyle with our app.
-      </Typography>
+      {/* Left section with text */}
+      <div className={styles.textSection}>
+        <p className={styles.groupNames}>Anirudh</p>
+        <p className={styles.groupNames}>Arslan</p>
+        <p className={styles.groupNames}>Josh </p>
+        <p className={styles.groupNames}>Pranav</p>
+        <p className={styles.groupNames}>Sam</p>
+      </div>
 
-      <Stack spacing={2} direction="column" alignItems="center">
-        <Link href="/pages/signin" passHref>
-          <Button variant="solid" color="success" size="large">
-            Sign In
-          </Button>
+      {/* Arcade image section */}
+      <div className={styles.arcadeSection}>
+        {/* Arcade image */}
+        <Link href="/signin">
+          <button className={styles.arcadeButton}>START</button>
         </Link>
-        <Link href="/pages/signup" passHref>
-          <Button variant="solid" color="primary" size="large">
-            Sign Up
-          </Button>
-        </Link>
-      </Stack>
+      </div>
+
+      {/* GitHub icon on the right */}
+      <div className={styles.githubIcon}>
+        {/* GitHub icon */}
+      </div>
     </div>
   );
 }
