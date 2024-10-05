@@ -1,0 +1,71 @@
+body {
+    background: url('/path-to-your-background.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Press Start 2P', cursive; /* You can use Google Fonts for a pixel font */
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .icon {
+    margin-left: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .signup-button, .login-button {
+    background-color: #6da36f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover, .login-button:hover {
+    background-color: #588d58;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
