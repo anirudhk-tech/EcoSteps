@@ -5,9 +5,11 @@ import EcoStepsLogo from '../public/web assets/ecostepsLogo.png';
 import Image from 'next/image';
 import StreakFire from '../public/web assets/streakFire.png';
 import EcoCoin from '../public/web assets/ecoCoin.png';
-import { TaskBar } from '../components/dashboard/taskBar';
 import { motion } from 'framer-motion';
 import { BadgeBar } from '../components/dashboard/badgeBar';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { TasksBox } from '../components/dashboard/taskBox';
 
 
 export default function Dashboard() {
@@ -28,11 +30,7 @@ export default function Dashboard() {
   //   fetch_user()
   // }, []);
 
-  const tasks = [
-    "Don't use a plastic water bottle today",
-    "Go for a 15 minute walk",
-    "Read a GLOBE article",
-  ]
+  const router = useRouter();
 
   const badges = [
     "Cloud Merchant",
@@ -48,6 +46,7 @@ export default function Dashboard() {
       <ProfileColumn>
         <LogoContainer>
           <Image 
+          onClick={() => router.push('/globe')}
           src={EcoStepsLogo}
           style={{
             scale: 2,
@@ -58,16 +57,13 @@ export default function Dashboard() {
         </LogoContainer>
         <ProfileContainer>
           <ProfileCircle></ProfileCircle>
+          <Link href={'/marketplace'}>
+            <NavigationText>Marketplace</NavigationText>
+          </Link>
         </ProfileContainer>
       </ProfileColumn>
       <GeneralColumn>
-          <SubContainer>
-            {
-              tasks.map((task, idx) => (
-                <TaskBar desc={task} badge_number={idx + 1} />
-              ))
-            }
-          </SubContainer>
+          <TasksBox/>
           <SubContainer>
             {
               badges.map((badge, idx) => (
@@ -181,6 +177,8 @@ const ProfileContainer = styled.div`
   margin-left: 3vw;
   border-radius: 17px;
   border: 2px solid black;
+  flex-direction: column;
+  align-items: center;
 `
 
 const SubContainer = styled.div`
@@ -195,19 +193,24 @@ const SubContainer = styled.div`
 `
 
 const CurrencyText = styled.text`
-font-size: 30px;
-font-family: var(--font-pixel);
-align-self: center;
-color: #000000;
+  font-size: 30px;
+  font-family: var(--font-pixel);
+  align-self: center;
+  color: #000000;
 `
 
 const ProfileCircle = styled.div`
-border-radius: 100px;
-border: 2px solid black;
-box-shadow: 0 0 4px 10px 10px;
-height: 20vh;
-width: 10vw;
-display: flex;
-margin-left: 25%;
-margin-top: 5%;
+  border-radius: 100px;
+  border: 2px solid black;
+  box-shadow: 0 0 4px 10px 10px;
+  height: 20vh;
+  width: 10vw;
+  display: flex;
+  margin-top: 5%;
+`
+
+const NavigationText = styled.text`
+  font-family: var(--font-pixel);
+  font-size: 5vh;
+  color: black;
 `
