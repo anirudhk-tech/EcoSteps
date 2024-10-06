@@ -13,8 +13,8 @@ export default function TasksPage() {
 
   useEffect(() => {
     const user = async () => {
-      const supabase = createClient();
-      const { data, error } = await supabase.auth.getUser();
+    const supabase = createClient();
+    const { data, error } = await supabase.auth.getUser();
       if (error || !data?.user) {
         router.push('/signin');
         return;
