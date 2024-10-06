@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Arrow from '../public/web assets/arrow.png';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import CloudsBackground from '../public/background/globeBackground.jpg';
 
 export default function Home() {
   const [globePressed, setGlobePressed] = useState(false);
