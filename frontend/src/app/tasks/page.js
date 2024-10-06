@@ -6,11 +6,10 @@ export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const userId = 1;
 
   const completeTask = async (id) => {
     try {
-      console.log(user)
       const response = await fetch(`http://localhost:4000/${userId}/tasks/${id}/complete`, {
         method: 'POST',
       });
