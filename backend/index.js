@@ -32,12 +32,10 @@ app.post('/signup', async (req, res) => {
   try {
     const { data: user, error } = await supabase
       .from('users')
-      .insert([
-        { email: email, tasksCompleted: [] }
-      ])
-      .single();
+      .insert({ email: email, tasksCompleted: [], badges: [] })
 
     if (error) {
+      console.log("ERROR BACKEND: ", error)
       throw error;
     }
 
