@@ -40,9 +40,8 @@ const SignIn = () => {
                 alt="EcoSteps Logo" 
                 width={300} // Adjust the width as needed
                 height={200} // Adjust the height as needed
-                style={{ marginRight: '10px', marginTop: '20px' }} // Space between logo and text
+                style={{ marginLeft: '30px', marginTop: '20px' }} // Space between logo and text
               />
-              <Title>Login</Title>
             </TitleContainer>
         </TitleBox>
         <LoginBox>

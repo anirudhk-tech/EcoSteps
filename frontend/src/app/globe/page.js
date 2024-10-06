@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Arrow from '../public/web assets/arrow.png';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import CloudsBackground from '../public/background/globeBackground.jpg';
+import CloudsBackground from '../public/background/globeBackground.jpeg';
 
 export default function Home() {
   const [globePressed, setGlobePressed] = useState(false);
@@ -37,7 +37,6 @@ export default function Home() {
             flex: 1,
             flexDirection: 'row',
             gap: '5vw',
-            backgroundColor: 'rgb(209,201,196)',
           }}
           >
           <Column>
@@ -197,7 +196,9 @@ const Container = styled.div`
   padding: 3vw;
   flex-direction: row;
   overflow: hidden;
-  background-color: rgb(209,201,196);
+  background-image: url(${CloudsBackground?.src});
+  background-size: cover;
+  background-position: center;
 `
 
 const Scroll = styled.div`

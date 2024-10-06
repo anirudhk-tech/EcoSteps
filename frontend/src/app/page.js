@@ -3,12 +3,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from './utils/supabase/client';
 import Link from 'next/link';
-import ArcadeEntry from './public/background/arcadeEntry.png';
+import ArcadeEntry from './public/background/arcadeUpdatedBackground.png';
 import GitHub from './public/web assets/githubLogo.png';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { duration } from '@mui/material';
 import StartButton from '../app/public/web assets/arcadeEntryUnpressed.png'
 import StartButtonPressed from '../app/public/web assets/arcadeEntryPressed.png';
 import EcoStepsLogo from '../app/public/web assets/ecostepsLogo.png';
@@ -45,7 +44,7 @@ export default function Home() {
         damping: 10,
       }}
       style={{
-        originY: '20vh',
+        originY: '27vh',
       }}
     >
       <Container>
