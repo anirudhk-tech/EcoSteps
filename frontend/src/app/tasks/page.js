@@ -1,11 +1,27 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { Box, Card, Grid, Paper, Typography, CircularProgress, Alert } from '@mui/material';
+import { Box, Card, Grid, Paper, Typography, CircularProgress, Alert, Button } from '@mui/material';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const userId = 1;
+
+  const completeTask = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/${userId}/tasks/${id}/complete`, {
+        method: 'POST',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to complete task');
+      }
+      const data = await response.json();
+      setTasks(data);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -64,6 +80,9 @@ export default function TasksPage() {
                 <Typography variant="body2" color={task.completed ? 'green' : 'red'}>
                   Completed: {task.completed ? 'Yes' : 'No'}
                 </Typography>
+                <Button variant="contained" color="primary" onClick={() => completeTask(task.id)}>
+                  Complete
+                </Button>
               </Card>
             </Grid>
           ))}
