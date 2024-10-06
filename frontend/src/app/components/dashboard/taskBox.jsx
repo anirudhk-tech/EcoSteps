@@ -16,7 +16,7 @@ export const TasksBox = () => {
             <Container>
                 {
                 tasks.map((task, idx) => (
-                    <TaskBar desc={task} badge_number={idx + 1} taskState={setHoveredTask}/>
+                    <TaskBar key={idx} desc={task} badge_number={idx + 1} taskState={setHoveredTask}/>
                 ))
                 }
             </Container>
@@ -35,4 +35,5 @@ const Container = styled.div`
   flex-direction: column;
   padding: 3vh;
   gap: 2vh;
+  cursor: pointer;
 `

@@ -64,7 +64,7 @@ const SignIn = () => {
                     src={EcoStepsCoin}
                     onClick={handleSignIn}
                     alt="Click to begin!" 
-                    style={{scale: 0.5, height: '80vh'}}
+                    style={{scale: 0.5, height: '80vh', cursor: 'pointer'}}
                     />
               </motion.div>
             </form>
