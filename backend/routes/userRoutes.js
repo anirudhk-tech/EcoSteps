@@ -1,6 +1,7 @@
 const express = require('express');
 const { createUser } = require('../services/userService');
 const { createClass, getStudentsById } = require('../services/classService');
+const { getUserTasks } = require('../services/taskService');
 const router = express.Router();
 
 // Route to create a new user
@@ -46,6 +47,22 @@ router.get('/students', async (req, res) => {
   try {
     const students = await getStudentsById(teacher);
     res.status(201).json(students);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// get not completed tasks
+router.post('/tasks', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  try {
+    const tasks = await getUserTasks(email);
+    res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
