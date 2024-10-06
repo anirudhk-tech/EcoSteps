@@ -52,9 +52,9 @@ export default function Dashboard() {
   const router = useRouter();
 
   const badges = [
-    "Cloud Merchant",
-    "Arcade Maniac",
-    "Life Shield",
+    "Ocean Defender",
+    "Recycle Maniac",
+    "Bird Watcher",
   ]
 
   const streak_days = 100;

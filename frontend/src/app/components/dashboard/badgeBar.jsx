@@ -1,8 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Cloud from '../../public/badges/cloudBadge.png';
-import Arcade from '../../public/badges/ArcadeBadge.png';
-import Galaxy from '../../public/badges/galaxyBadge.png';
+import Ocean from '../../public/badges/oceanBadge.png';
+import Truck from '../../public/badges/dumptruckBadge.png';
+import Bird from '../../public/badges/birdBadge.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -10,8 +10,8 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
 
     const Badge = badge_number == 1 ? 
-                    Cloud : badge_number == 2 ?
-                        Arcade : Galaxy
+                    Ocean : badge_number == 2 ?
+                        Truck : Bird
     return (
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
