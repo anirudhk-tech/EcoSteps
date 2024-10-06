@@ -173,6 +173,7 @@ const LogoContainer = styled.div`
   justify-content: center;
   padding-left: 5vh;
   clip-path: polygon(20px 0px, calc(100% - 20px) 0px, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0px calc(100% - 20px), 0px 20px);
+  cursor: pointer;
 `
 
 const ProfileContainer = styled.div`

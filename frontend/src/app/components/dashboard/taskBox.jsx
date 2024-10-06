@@ -35,4 +35,5 @@ const Container = styled.div`
   flex-direction: column;
   padding: 3vh;
   gap: 2vh;
+  cursor: pointer;
 `

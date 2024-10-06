@@ -143,6 +143,7 @@ const StartText = styled.text`
   text-align: center;
   padding-top: 12vh;
   margin-top: 30%;
+  cursor: pointer;
 `
 
 const StartButtonStyle = {
