@@ -28,11 +28,7 @@ export default function Home() {
           }}
           >
           <Column>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px blue',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: 'blue',
@@ -42,11 +38,7 @@ export default function Home() {
                 Water is one of the most essential elements for life on Earth, but it faces numerous threats due to pollution, overuse, and climate change. 
               </Text>
             </Scroll>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px #FDE541',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: '#FDE541',
@@ -56,11 +48,7 @@ export default function Home() {
               The beauty of energy is marred by its significant contribution to greenhouse gas emissions through fossil fuel reliance, which accelerates climate change and pollutes our air and water. 
               </Text>
             </Scroll>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px darkgreen',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: 'darkgreen',
@@ -72,11 +60,7 @@ export default function Home() {
             </Scroll>
           </Column>
           <Column>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px grey',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: 'grey',
@@ -87,11 +71,7 @@ export default function Home() {
               </Text>
             </Scroll>
             <Spacer></Spacer>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px teal',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: 'teal',
@@ -103,6 +83,7 @@ export default function Home() {
             </Scroll>
           </Column>
           <Column>
+            <Spacer></Spacer>
             <Spacer>
               <motion.div
                 animate={{y: 20}}
@@ -141,11 +122,7 @@ export default function Home() {
             <Spacer></Spacer>
           </Column>
           <Column>
-          <Scroll
-            style={{
-              boxShadow: '10px 10px purple',
-            }}
-            >
+          <Scroll>
               <Title
               style={{
                 color: 'purple',
@@ -156,11 +133,7 @@ export default function Home() {
               </Text>
             </Scroll>
             <Spacer></Spacer>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px orange',
-            }}
-            >
+            <Scroll>
               <Title
               style={{
                 color: 'orange',
@@ -172,11 +145,7 @@ export default function Home() {
             </Scroll>
           </Column>
           <Column>
-          <Scroll
-            style={{
-              boxShadow: '10px 10px darksalmon',
-            }}
-            >
+          <Scroll>
               <Title
               style={{
                 color: 'darksalmon',
@@ -222,7 +191,7 @@ const Scroll = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  border-radius: 20px;
+  clip-path: polygon(20px 0px, calc(100% - 20px) 0px, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0px calc(100% - 20px), 0px 20px);
   background-color: white;
   padding: 8px;
   gap: 10px;

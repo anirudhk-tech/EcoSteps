@@ -66,9 +66,9 @@ export default function Home() {
               display: 'flex',
               flexDirection: 'column',
             }}
-            animate={{opacity: 0.0}}
+            animate={{opacity: 0.5}}
             transition={{
-            duration: '1.5',
+            duration: '1.75',
             repeat: Infinity,
             repeatType: 'reverse',
             }}
@@ -143,6 +143,7 @@ const StartText = styled.text`
   text-align: center;
   padding-top: 12vh;
   margin-top: 30%;
+  cursor: pointer;
 `
 
 const StartButtonStyle = {

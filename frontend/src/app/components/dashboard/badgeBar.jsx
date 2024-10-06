@@ -16,7 +16,7 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
         onMouseLeave={() => setMouseEnter(false)}
-        whileHover={{scale: 1.1}}
+        whileHover={{scale: 1.03}}
         transition={{
             duration: '0.5',
         }}
@@ -46,7 +46,6 @@ const Bar = styled.div`
     display: flex;
     flex-direction: row;
     flex: 1;
-    border-radius: 10px;
     border: 2px solid black;
     justify-content: space-between;
     align-items: center;
