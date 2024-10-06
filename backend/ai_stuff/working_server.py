@@ -47,7 +47,7 @@ def summarise_contents():
          {"role": "user", "content": json.dumps(results_list)}
     ]
 
-    response = openai.chat.completions.create(model="gpt-4o-mini-2024-07-18", messages=messages, max_tokens=50, temperature=0.3)
+    response = openai.chat.completions.create(model="gpt-4o-mini-2024-07-18", messages=messages, max_tokens=100, temperature=0.3)
 
     smry = response.choices[0].message.content
 
