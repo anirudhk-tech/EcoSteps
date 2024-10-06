@@ -11,8 +11,8 @@
     "@types/express": "^5.0.0"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon src/index.js",
     "build": "tsc",
-    "dev": "ts-node index.js"
+    "dev": "ts-node src/index.js"
   }
 }
