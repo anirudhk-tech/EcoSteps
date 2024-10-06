@@ -6,6 +6,7 @@ import EcoStepsCoin from '../public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
 import { login, signup } from './actions'
 import { useEffect, useRef, useState } from 'react';
+import EcoStepsLogo from '../public/web assets/ecostepsLogo.png';
 
 const SignIn = () => {
   const [start, setStart] = useState(false);
@@ -33,25 +34,44 @@ const SignIn = () => {
     >
       <Container>
         <TitleBox>
-          <Title>EcoSteps Login</Title>
+          <TitleContainer>
+              <Image 
+                src={EcoStepsLogo} 
+                alt="EcoSteps Logo" 
+                width={300} // Adjust the width as needed
+                height={200} // Adjust the height as needed
+                style={{ marginRight: '10px', marginTop: '20px' }} // Space between logo and text
+              />
+              <Title>Login</Title>
+            </TitleContainer>
         </TitleBox>
         <LoginBox>
           <form id="user_login">
             <FormPrompt>Email</FormPrompt>
             <InputWrapper>
-              <input id="email" name="email" type="email" required />
+              <input id="email" name="email" type="email" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
             <FormPrompt>Password</FormPrompt>
             <InputWrapper>
-              <input id="password" name="password" type="password" required />
+              <input id="password" name="password" type="password" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
             {/* Selection: teacher or student */}
             <FormPrompt>Are you a teacher or student?</FormPrompt>
             <InputWrapper>
-              <input id="role" name="role" type="text" required />
+              <input id="role" name="role" type="text" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
-            <button formAction={login}> Login </button>
-            <button formAction={signup}> Sign Up </button>
+            <ButtonWrapper>
+              <button formAction={login} className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+              > 
+                Login 
+              </button>
+            </ButtonWrapper>
+            <ButtonWrapper>
+              <button formAction={signup} className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+              > 
+                Sign Up 
+              </button>
+            </ButtonWrapper>
           </form>
           <BeginBox>
             <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
@@ -69,7 +89,7 @@ const SignIn = () => {
                     src={EcoStepsCoin}
                     onClick={handleSignIn}
                     alt="Click to begin!" 
-                    style={{scale: 0.5, height: '80vh', cursor: 'pointer'}}
+                    style={{scale: 0.5, height: '80vh', cursor: 'pointer', marginLeft: '35px'}}
                     />
               </motion.div>
             </form>
@@ -115,6 +135,11 @@ const TitleBox = styled.div`
   text-align: center;
   display: flex;
   height: 10vh;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Title = styled.h1`

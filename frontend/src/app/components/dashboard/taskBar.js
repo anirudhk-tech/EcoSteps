@@ -6,9 +6,10 @@ import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "../../utils/supabase/client";
 
 export const TaskBar = ({ desc, badge_number, setCompleted }) => {
+    const [email, setEmail] = useState(null);
     const [MouseEnter, setMouseEnter] = useState(false);
 
     const Badge = badge_number % 3 == 1 ? 
@@ -38,8 +39,7 @@ export const TaskBar = ({ desc, badge_number, setCompleted }) => {
           if (!response.ok) {
             throw new Error('Failed to complete task');
           }
-          const data = await response.json();
-          console.log("Task completed successfully", data);
+          console.log("Task completed successfully");
         } catch (err) {
           setError(err.message);
         }

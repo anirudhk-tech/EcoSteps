@@ -10,24 +10,11 @@ import { BadgeBar } from '../components/dashboard/badgeBar';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
+import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
+import { createClient } from '../utils/supabase/client';
+
 
 export default function Dashboard() {
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const fetch_user = () => {
-  //     const supabase = createClient()                          // NEED API. SERVER FUNCTIONS WONT WORK IN CLIENT.
-
-  //     const { data, error } = supabase.auth.getUser()
-  //     if (error || !data?.user) {
-  //       redirect('/')
-  //     } else {
-  //       setUser(data.user);
-  //     }
-  //   };
-
-  //   fetch_user()
-  // }, []);
 
   const router = useRouter();
 
@@ -40,29 +27,57 @@ export default function Dashboard() {
   const streak_days = 100;
   const currency_count = 1976051;
 
+
+  const handleSignout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/signin');
+  }
+
   return (
     <>
     <Container>
       <ProfileColumn>
         <LogoContainer>
-          <Image 
-          onClick={() => router.push('/globe')}
-          src={EcoStepsLogo}
-          style={{
-            scale: 2,
-            width: '17vw',
-            height: '15vh',
-          }}
-          />
+          <motion.div
+              animate={{ y: [0, -10, 0] }} // Moves up 10 pixels and back down
+              transition={{
+                duration: 2, // Duration of the animation
+                repeat: Infinity, // Repeat indefinitely
+                repeatType: 'reverse', // Reverse back to the start
+              }}
+            >
+              <Image 
+              onClick={() => router.push('/globe')}
+              src={EcoStepsLogo}
+              style={{
+                scale: 1.75,
+                width: '17vw',
+                height: '15vh',
+              }}
+              />
+          </motion.div>
         </LogoContainer>
         <ProfileContainer>
-          <ProfileCircle></ProfileCircle>
+          <Image 
+              src={bunnyAvatarSilver} 
+              alt="Bunny Avatar" 
+              style={{
+                height: '25vh', // Set the height
+                width: '25vh', // Set the width
+              }} 
+            />
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
           </Link>
           <Link href={'/classroom'}>
             <NavigationText>Classroom</NavigationText>
           </Link>
+          <button onClick={handleSignout}
+          className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+          >
+            Sign Out
+          </button>
         </ProfileContainer>
       </ProfileColumn>
       <GeneralColumn>
@@ -139,8 +154,8 @@ const ProfileColumn = styled.div`
   flex-direction: column;
   flex: 3;
   height: 100vh;
-  gap: 10vh;
-  padding-bottom: 9vh;
+  gap: 5vh;
+  padding-bottom: 20vh;
 `
 
 const GeneralColumn = styled.div`
@@ -148,8 +163,8 @@ const GeneralColumn = styled.div`
   flex-direction: column;
   flex: 4;
   height: 100vh;
-  gap: 10vh;
-  padding-bottom: 9vh;
+  gap: 5vh;
+  padding-bottom: 20vh;
 `
 
 const CurrencyColumn = styled.div`
@@ -157,8 +172,8 @@ const CurrencyColumn = styled.div`
   flex-direction: column;
   flex: 2;
   height: 100vh;
-  gap: 10vh;
-  padding-bottom: 9vh;
+  gap: 5vh;
+  padding-bottom: 50vh;
 `
 
 const LogoContainer = styled.div`

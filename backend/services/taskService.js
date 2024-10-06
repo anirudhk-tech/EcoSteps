@@ -20,6 +20,7 @@ const getRandomTask = async (email) => {
     .select('tasks')
     .eq('email', email)
     .single();
+
   if (fetchError) throw fetchError;
 
   const { data: tasks, error: taskError } = await supabase
@@ -57,8 +58,30 @@ const completeTask = async (email, taskId) => {
   return updatedUser;
 };
 
+// Get all tasks that a user has not completed
+const getUserTasks = async (email) => {
+  const { data: userData, error: fetchError } = await supabase
+    .from('users')
+    .select('tasks')
+    .eq('email', email)
+    .single();
+
+  if (fetchError) throw fetchError;
+
+  const { data: tasks, error: taskError } = await supabase
+    .from('tasks')
+    .select('*');
+
+  if (taskError) throw taskError;
+
+  const completedTasks = userData.tasks || [];
+  const incompleteTasks = tasks.filter((task) => !completedTasks.includes(task.id));
+  return incompleteTasks.slice(0, 3);
+}
+
 module.exports = {
   getTasks,
   completeTask,
   getRandomTask,
+  getUserTasks
 };

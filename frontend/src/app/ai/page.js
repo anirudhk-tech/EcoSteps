@@ -18,6 +18,7 @@ export default function SearchPage() {
     setLoading(true);
     setError('');
     setResults([]);
+    setSummary('');  // Reset summary when a new search is made
 
     try {
       const response = await fetch('http://10.1.119.206:5500/ask', {
@@ -37,6 +38,9 @@ export default function SearchPage() {
 
       const data = await response.json();
       setResults(data.results || []);
+
+      // Automatically summarize articles after search
+      await handleSummarize(data.results);
     } catch (error) {
       setError('Failed to fetch articles. Please try again.');
     } finally {
