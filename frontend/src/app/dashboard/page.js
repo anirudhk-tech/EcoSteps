@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
 import Navbar from '../components/Navbar';
+import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
 
 
 export default function Dashboard() {
@@ -48,18 +49,34 @@ export default function Dashboard() {
     <Container>
       <ProfileColumn>
         <LogoContainer>
-          <Image 
-          onClick={() => router.push('/globe')}
-          src={EcoStepsLogo}
-          style={{
-            scale: 2,
-            width: '17vw',
-            height: '15vh',
-          }}
-          />
+          <motion.div
+              animate={{ y: [0, -10, 0] }} // Moves up 10 pixels and back down
+              transition={{
+                duration: 2, // Duration of the animation
+                repeat: Infinity, // Repeat indefinitely
+                repeatType: 'reverse', // Reverse back to the start
+              }}
+            >
+              <Image 
+              onClick={() => router.push('/globe')}
+              src={EcoStepsLogo}
+              style={{
+                scale: 1.75,
+                width: '17vw',
+                height: '15vh',
+              }}
+              />
+          </motion.div>
         </LogoContainer>
         <ProfileContainer>
-          <ProfileCircle></ProfileCircle>
+          <Image 
+              src={bunnyAvatarSilver} 
+              alt="Bunny Avatar" 
+              style={{
+                height: '25vh', // Set the height
+                width: '25vh', // Set the width
+              }} 
+            />
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
           </Link>
@@ -143,7 +160,7 @@ const ProfileColumn = styled.div`
   flex: 3;
   height: 100vh;
   gap: 10vh;
-  padding-bottom: 9vh;
+  padding-bottom: 20vh;
 `
 
 const GeneralColumn = styled.div`
@@ -152,7 +169,7 @@ const GeneralColumn = styled.div`
   flex: 4;
   height: 100vh;
   gap: 10vh;
-  padding-bottom: 9vh;
+  padding-bottom: 20vh;
 `
 
 const CurrencyColumn = styled.div`
@@ -161,7 +178,7 @@ const CurrencyColumn = styled.div`
   flex: 2;
   height: 100vh;
   gap: 10vh;
-  padding-bottom: 9vh;
+  padding-bottom: 50vh;
 `
 
 const LogoContainer = styled.div`

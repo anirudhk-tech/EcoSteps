@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { duration } from '@mui/material';
 import StartButton from '../app/public/web assets/arcadeEntryUnpressed.png'
 import StartButtonPressed from '../app/public/web assets/arcadeEntryPressed.png';
+import EcoStepsLogo from '../app/public/web assets/ecostepsLogo.png';
 
 export default function Home() {
   const router = useRouter();
@@ -57,7 +58,15 @@ export default function Home() {
           onClick={handleStartPress}
           >DIVE IN</StartText>
           <TextSection>
-            <GroupTitle>EcoSteps</GroupTitle>
+            <Image 
+              src={EcoStepsLogo} 
+              alt="EcoSteps Logo" 
+              style={{
+                width: '500px',
+                height: 'auto', 
+                alignSelf: 'center', 
+              }}
+            />
             <motion.div
             style={{
               color: 'white',

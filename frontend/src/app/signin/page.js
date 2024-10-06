@@ -6,6 +6,7 @@ import EcoStepsCoin from '../public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
 import { login, signup } from './actions'
 import { useEffect, useRef, useState } from 'react';
+import EcoStepsLogo from '../public/web assets/ecostepsLogo.png';
 
 const SignIn = () => {
   const [start, setStart] = useState(false);
@@ -33,7 +34,16 @@ const SignIn = () => {
     >
       <Container>
         <TitleBox>
-          <Title>EcoSteps Login</Title>
+          <TitleContainer>
+              <Image 
+                src={EcoStepsLogo} 
+                alt="EcoSteps Logo" 
+                width={300} // Adjust the width as needed
+                height={200} // Adjust the height as needed
+                style={{ marginRight: '10px', marginTop: '20px' }} // Space between logo and text
+              />
+              <Title>Login</Title>
+            </TitleContainer>
         </TitleBox>
         <LoginBox>
           <form id="user_login">
@@ -69,7 +79,7 @@ const SignIn = () => {
                     src={EcoStepsCoin}
                     onClick={handleSignIn}
                     alt="Click to begin!" 
-                    style={{scale: 0.5, height: '80vh', cursor: 'pointer'}}
+                    style={{scale: 0.5, height: '80vh', cursor: 'pointer', marginLeft: '35px'}}
                     />
               </motion.div>
             </form>
@@ -115,6 +125,11 @@ const TitleBox = styled.div`
   text-align: center;
   display: flex;
   height: 10vh;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Title = styled.h1`
