@@ -20,7 +20,6 @@ const getRandomTask = async (email) => {
     .select('tasks')
     .eq('email', email)
     .single();
-
   if (fetchError) throw fetchError;
 
   const { data: tasks, error: taskError } = await supabase
