@@ -11,6 +11,7 @@ export default function SearchPage() {
   const [resultsCount, setResultsCount] = useState(5);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
+  const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
   const [searched, setSearched] = useState(false);
 
@@ -69,7 +70,7 @@ export default function SearchPage() {
               results.map((result) => {
                 return (
                   <ResultBar>
-
+                    <text style={{}}>{result.title}</text>
                   </ResultBar>
                 )
               })
