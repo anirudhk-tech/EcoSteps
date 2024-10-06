@@ -44,7 +44,6 @@ export default function Dashboard() {
 
   return (
     <>
-    <Navbar/>
     <Container>
       <ProfileColumn>
         <LogoContainer>

@@ -6,12 +6,24 @@ import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export const TaskBar = ({ desc, badge_number }) => {
+export const TaskBar = ({ desc, badge_number, setCompleted }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
 
-    const Badge = badge_number == 1 ? 
-                    Diamond : badge_number == 2 ?
+    const Badge = badge_number % 3 == 1 ? 
+                    Diamond : badge_number % 3 == 2 ?
                         Ruby : Topaz
+    
+    const CompleteTask = async (id) => {
+        try {
+            await fetch(`http://localhost:4000/tasks/${id}`, {
+                method: 'POST',
+            })
+            
+        } catch (error) {
+            console.log("Error occurred while completing task: ", error);
+        }
+    } 
+
     return (
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
@@ -27,7 +39,12 @@ export const TaskBar = ({ desc, badge_number }) => {
             flex: 1,
         }}
         >
-            <Bar>
+            <Bar
+            onClick={() => {
+                CompleteTask(badge_number)
+                setCompleted(badge_number)
+            }}
+            >
                 <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 20, marginLeft: '4vw', marginBottom: '2vh'}}/>
                 <BarText>{MouseEnter ? "Complete?" : desc}</BarText>
             </Bar>
