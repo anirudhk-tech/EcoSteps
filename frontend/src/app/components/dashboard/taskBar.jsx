@@ -5,6 +5,8 @@ import Topaz from '../../public/web assets/topaz.png';
 import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
 export const TaskBar = ({ desc, badge_number, setCompleted }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
@@ -12,18 +14,36 @@ export const TaskBar = ({ desc, badge_number, setCompleted }) => {
     const Badge = badge_number % 3 == 1 ? 
                     Diamond : badge_number % 3 == 2 ?
                         Ruby : Topaz
-    
-    const CompleteTask = async (id) => {
-        try {
-            await fetch(`http://localhost:4000/tasks/${id}`, {
-                method: 'POST',
-            })
-            
-        } catch (error) {
-            console.log("Error occurred while completing task: ", error);
-        }
-    } 
 
+    useEffect(() => {
+        const user = async () => {
+          const supabase = createClient();
+          const { data, error } = await supabase.auth.getUser();
+          if (error || !data?.user) {
+            router.push('/signin');
+            return;
+          }
+          setEmail(data.user.email);
+        }
+        user();
+      }, []);
+    
+      const completeTask = async (id) => {
+        try {
+          const response = await fetch(`http://localhost:4000/tasks/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+          });
+          if (!response.ok) {
+            throw new Error('Failed to complete task');
+          }
+          const data = await response.json();
+          console.log("Task completed successfully", data);
+        } catch (err) {
+          setError(err.message);
+        }
+      }
     return (
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
@@ -41,7 +61,7 @@ export const TaskBar = ({ desc, badge_number, setCompleted }) => {
         >
             <Bar
             onClick={() => {
-                CompleteTask(badge_number)
+                completeTask(badge_number)
                 setCompleted(badge_number)
             }}
             >
