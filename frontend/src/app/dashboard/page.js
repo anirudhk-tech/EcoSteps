@@ -70,7 +70,7 @@ export default function Dashboard() {
           <SubContainer>
             {
               badges.map((badge, idx) => (
-                <BadgeBar badge_name={badge} badge_number={idx + 1} />
+                <BadgeBar key={idx} badge_name={badge} badge_number={idx + 1} />
               ))
             }
           </SubContainer>

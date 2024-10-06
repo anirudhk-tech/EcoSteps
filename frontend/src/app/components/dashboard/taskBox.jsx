@@ -16,7 +16,7 @@ export const TasksBox = () => {
             <Container>
                 {
                 tasks.map((task, idx) => (
-                    <TaskBar desc={task} badge_number={idx + 1} taskState={setHoveredTask}/>
+                    <TaskBar key={idx} desc={task} badge_number={idx + 1} taskState={setHoveredTask}/>
                 ))
                 }
             </Container>
