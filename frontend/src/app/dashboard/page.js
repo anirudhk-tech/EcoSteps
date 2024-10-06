@@ -168,8 +168,7 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding-left: 5vh;
-  border: 2px solid black;
-  border-radius: 17px;
+  clip-path: polygon(20px 0px, calc(100% - 20px) 0px, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0px calc(100% - 20px), 0px 20px);
 `
 
 const ProfileContainer = styled.div`
@@ -178,8 +177,7 @@ const ProfileContainer = styled.div`
   background-color: rgb(209,201,196);
   margin-right: 3vw;
   margin-left: 3vw;
-  border-radius: 17px;
-  border: 2px solid black;
+  clip-path: polygon(30px 0px, calc(100% - 30px) 0px, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0px calc(100% - 30px), 0px 30px);
   flex-direction: column;
   align-items: center;
 `
@@ -188,12 +186,11 @@ const SubContainer = styled.div`
   display: flex;
   flex: 1;
   background-color: rgb(209,201,196);
-  border-radius: 17px;
-  border: 2px solid black;
   flex-direction: column;
   padding: 3vh;
   gap: 2vh;
-`
+  clip-path: polygon(30px 0px, calc(100% - 30px) 0px, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0px calc(100% - 30px), 0px 30px);
+`;
 
 const CurrencyText = styled.text`
   font-size: 30px;

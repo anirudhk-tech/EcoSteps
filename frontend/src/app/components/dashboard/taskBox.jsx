@@ -31,8 +31,7 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   background-color: rgb(209,201,196);
-  border-radius: 17px;
-  border: 2px solid black;
+  clip-path: polygon(20px 0px, calc(100% - 20px) 0px, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0px calc(100% - 20px), 0px 20px);
   flex-direction: column;
   padding: 3vh;
   gap: 2vh;

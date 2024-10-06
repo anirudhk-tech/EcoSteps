@@ -39,7 +39,6 @@ const Bar = styled.div`
     display: flex;
     flex-direction: row;
     flex: 1;
-    border-radius: 10px;
     border: 2px solid black;
     gap: 2vw;
     align-items: center;
