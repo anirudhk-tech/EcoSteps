@@ -1,29 +1,24 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Box, Card, Grid, Paper, Typography, CircularProgress, Alert, Button } from '@mui/material';
+import { createClient } from '../utils/supabase/client';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userId = 1;
-
-  const completeTask = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:4000/${userId}/tasks/${id}/complete`, {
-        method: 'POST',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to complete task');
-      }
-      const data = await response.json();
-      setTasks(data);
-    } catch (err) {
-      setError(err.message);
-    }
-  }
+  const [email, setEmail] = useState(null);
 
   useEffect(() => {
+    const user = async () => {
+      const supabase = createClient();
+      const { data, error } = await supabase.auth.getUser();
+      if (error || !data?.user) {
+        throw new Error('Failed to fetch user');
+      }
+      setEmail(data.user.email);
+    }
+
     const fetchTasks = async () => {
       try {
         const response = await fetch('http://localhost:4000/tasks');
@@ -38,9 +33,26 @@ export default function TasksPage() {
         setLoading(false);
       }
     };
-
+    user();
     fetchTasks();
   }, []);
+
+  const completeTask = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:4000/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to complete task');
+      }
+      const data = await response.json();
+      console.log("Task completed successfully", data);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   if (loading) {
     return (
@@ -76,9 +88,6 @@ export default function TasksPage() {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Impact: {task.impact}
-                </Typography>
-                <Typography variant="body2" color={task.completed ? 'green' : 'red'}>
-                  Completed: {task.completed ? 'Yes' : 'No'}
                 </Typography>
                 <Button variant="contained" color="primary" onClick={() => completeTask(task.id)}>
                   Complete

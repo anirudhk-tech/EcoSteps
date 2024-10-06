@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Cloud from '../../public/badges/cloudBadge.png';
 import Arcade from '../../public/badges/ArcadeBadge.png';
-import Tree from '../../public/badges/treeBadge.png';
+import Galaxy from '../../public/badges/galaxyBadge.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
 
     const Badge = badge_number == 1 ? 
                     Cloud : badge_number == 2 ?
-                        Arcade : Tree
+                        Arcade : Galaxy
     return (
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
@@ -27,14 +27,14 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
         >
             <Bar>
                 <motion.div
-                animate={MouseEnter ? {scale: [1.3, 1.0]} : {}}
+                animate={MouseEnter ? {scale: [1.3, 1]} : {}}
                 transition={{
                     duration: 1.0,
                     repeat: MouseEnter ? Infinity : 0,
                     repeatType: 'loop'
                 }}
                 >
-                    <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 20, marginLeft: '4vw'}}/>
+                    <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 16, marginLeft: '4.5vw'}}/>
                 </motion.div>
                 <BarText>{badge_name}</BarText>
             </Bar>

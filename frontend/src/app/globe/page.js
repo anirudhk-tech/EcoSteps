@@ -1,71 +1,231 @@
 'use client'
 import React from 'react';
-import styles from '../styles/Globe.module.css';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export default function Home() {
-  const handleJoinGLOBE = () => {
-    alert("Thank you for your interest in joining The GLOBE Program!");
-    // Here you can add a redirect to a sign-up page or other logic
-  };
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <h1>The GLOBE Program Overview</h1>
-        <p>A Worldwide Science and Education Program</p>
-      </header>
-
-      <section className={styles.section}>
-        <h2>About the Program</h2>
-        <p>
-          The GLOBE (Global Learning and Observations to Benefit the Environment) Program is an international science and education program 
-          that focuses on promoting scientific literacy and building connections between people passionate about the environment. GLOBE has 
-          three primary goals: increasing environmental awareness, contributing to increased scientific understanding of the Earth, and 
-          supporting improved student achievement in science and mathematics. By participating in GLOBE, students, teachers, researchers, 
-          and lifelong learners can connect with the program's global community.
-        </p>
-        <p>
-          GLOBE learners also investigate and study Earth System Science through their own research projects and those led by NASA. These 
-          projects can center around one of GLOBE’s various protocols, campaigns, or other data initiatives. By participating in these 
-          initiatives, GLOBE participants contribute to scientific research and increase their understanding of environmental issues.
-        </p>
-
-        <button className={styles.button} onClick={handleJoinGLOBE}>
-          Join GLOBE
-        </button>
-      </section>
-
-      <section className={styles.section}>
-        <h2>Benefits of Joining GLOBE</h2>
-        <p>
-          GLOBE is a community of people passionate about teaching and learning Earth System Science. Members across the world collaborate 
-          with each other and use GLOBE's extensive collection of resources to do real science. They provide environmental data that can 
-          be used to complement NASA research efforts and further community or individual investigations, thereby helping people gain a 
-          better understanding of the environment.
-        </p>
-        <img src="/images/globe-learning.jpg" alt="GLOBE Learning" />
-      </section>
-
-      <section className={styles.section}>
-        <h2>Vision and Mission</h2>
-        <p>
-          <strong>Vision:</strong> A worldwide community of students, educators, scientists, and citizens working together to better understand, sustain, 
-          and improve Earth's environment at local, regional, and global scales.
-        </p>
-        <p>
-          <strong>Mission:</strong> To increase awareness of individuals throughout the world about the global environment, contribute to increased scientific 
-          understanding of the Earth, and support improved student achievement in science and mathematics.
-        </p>
-      </section>
-
-      <section className={styles.section}>
-        <h2>History</h2>
-        <p>
-          Announced in 1994, The GLOBE Program began operations on Earth Day 1995. Today, the international GLOBE network has grown to include representatives 
-          from more than 125 participating countries coordinating GLOBE activities that are integrated into their local and regional communities.
-        </p>
-        <img src="/images/globe-history.jpg" alt="GLOBE History" />
-      </section>
-    </div>
+      <Container>
+          <motion.div
+          animate={{y: 10}}
+          transition={{
+            repeat: Infinity,
+            repeatType: 'reverse',
+            duration: 2.0,
+          }}
+          style={{
+            display: 'flex',
+            height: '100%',
+            width: '100%',
+            flex: 1,
+            flexDirection: 'row',
+            gap: '5vw',
+            backgroundColor: 'rgb(209,201,196)',
+          }}
+          >
+          <Column>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px blue',
+            }}
+            >
+              <Title
+              style={{
+                color: 'blue',
+              }}
+              >Water</Title>
+              <Text>
+                Water is one of the most essential elements for life on Earth, but it faces numerous threats due to pollution, overuse, and climate change. 
+              </Text>
+            </Scroll>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px #FDE541',
+            }}
+            >
+              <Title
+              style={{
+                color: '#FDE541',
+              }}
+              >Energy</Title>
+              <Text>
+              The beauty of energy is marred by its significant contribution to greenhouse gas emissions through fossil fuel reliance, which accelerates climate change and pollutes our air and water. 
+              </Text>
+            </Scroll>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px darkgreen',
+            }}
+            >
+              <Title
+              style={{
+                color: 'darkgreen',
+              }}
+              >Garbage</Title>
+              <Text>
+              With every discarded item, we contribute to the overwhelming mountains of waste that pollute our landscapes, choke our oceans, and harm wildlife. 
+              </Text>
+            </Scroll>
+          </Column>
+          <Column>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px grey',
+            }}
+            >
+              <Title
+              style={{
+                color: 'grey',
+              }}
+              >Urbanization</Title>
+              <Text>
+              As cities expand and concrete jungles replace lush greenery, we risk losing vital habitats for countless species and diminishing the air quality that nourishes our communities. 
+              </Text>
+            </Scroll>
+            <Spacer></Spacer>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px teal',
+            }}
+            >
+              <Title
+              style={{
+                color: 'teal',
+              }}
+              >Organisms</Title>
+              <Text>
+              The richness of life on Earth, from the tiniest microbes to the grandest mammals, weaves an intricate tapestry of ecosystems that sustain our planet.
+              </Text>
+            </Scroll>
+          </Column>
+          <Column>
+            <Spacer></Spacer>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px green',
+            }}
+            >
+              <Title
+              style={{
+                color: 'green',
+              }}
+              >Agriculture</Title>
+              <Text>
+              The beauty of thriving farms, with their golden fields of wheat swaying in the breeze and vibrant vegetable patches bursting with color, represents the bounty of the earth and the hard work of farmers.
+              </Text>
+            </Scroll>
+            <Spacer></Spacer>
+          </Column>
+          <Column>
+          <Scroll
+            style={{
+              boxShadow: '10px 10px purple',
+            }}
+            >
+              <Title
+              style={{
+                color: 'purple',
+              }}
+              >Chemical Exposure</Title>
+              <Text>
+              Many of the products we use daily contain harmful substances that can seep into our bodies and ecosystems, leading to devastating impacts.
+              </Text>
+            </Scroll>
+            <Spacer></Spacer>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px orange',
+            }}
+            >
+              <Title
+              style={{
+                color: 'orange',
+              }}
+              >Warming</Title>
+              <Text>
+              The rising temperatures, melting ice caps, and extreme weather patterns we witness today are stark reminders of the climate crisis that looms over us.
+              </Text>
+            </Scroll>
+          </Column>
+          <Column>
+          <Scroll
+            style={{
+              boxShadow: '10px 10px darksalmon',
+            }}
+            >
+              <Title
+              style={{
+                color: 'darksalmon',
+              }}
+              >Ozone</Title>
+              <Text>
+              The ozone layer acts as Earth’s protective shield, absorbing the sun's harmful ultraviolet radiation. However, human activities, such as industrial emissions and the use of ozone-depleting substances, have significantly threatened this crucial layer.
+              </Text>
+            </Scroll>
+            <Scroll
+            style={{
+              boxShadow: '10px 10px darkred',
+            }}
+            >
+              <Title
+              style={{
+                color: 'purple',
+              }}
+              >GLOBE</Title>
+              <Text>
+              The GLOBE (Global Learning and Observations to Benefit the Environment) Program is an international science and education program 
+              that focuses on promoting scientific literacy and building connections between people passionate about the environment.
+              </Text>
+            </Scroll>
+            <Spacer></Spacer>
+          </Column>
+        </motion.div>
+      </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  padding: 3vw;
+  flex-direction: row;
+  overflow: hidden;
+  background-color: rgb(209,201,196);
+`
+
+const Scroll = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-radius: 20px;
+  background-color: white;
+  padding: 8px;
+  gap: 10px;
+`
+
+const Spacer = styled.div`
+  display: flex;
+  flex: 1;
+`
+
+const Column = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5vh;
+`
+
+const Text = styled.text`
+  font-size: 10px;
+  font-family: var(--font-pixel);
+  color: black;
+`
+
+const Title = styled.text`
+  font-size: 20px;
+  font-family: var(--font-pixel);
+  text-align: center;
+`

@@ -6,7 +6,7 @@ import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export const TaskBar = ({ desc, badge_number }) => {
+export const TaskBar = ({ desc, badge_number, setState }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
 
     const Badge = badge_number == 1 ? 
