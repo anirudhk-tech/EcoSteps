@@ -11,7 +11,8 @@ export default function Home() {
   const router = useRouter();
 
   const handleGlobeClick = () => {
-    router.push('/ai');
+    setGlobePressed(true);
+    setTimeout(() => router.push('/ai'), 2000);
   }
 
   return (
