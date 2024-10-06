@@ -10,7 +10,8 @@ export default function SearchPage() {
   const [query, setQuery] = useState('');
   const [resultsCount, setResultsCount] = useState(5);
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState(null);
+  const [results, setResults] = useState([]);
+  const [summary, setSummary] = useState('');
   const [error, setError] = useState('');
   const [searched, setSearched] = useState(false);
 
@@ -18,7 +19,7 @@ export default function SearchPage() {
     setLoading(true);
     setError('');
     setResults([]);
-    setSummary('');  // Reset summary when a new search is made
+    setSummary('');
 
     try {
       const response = await fetch('http://10.1.119.206:5500/ask', {
@@ -38,9 +39,9 @@ export default function SearchPage() {
 
       const data = await response.json();
       setResults(data.results || []);
-
-      // Automatically summarize articles after search
+      
       await handleSummarize(data.results);
+      setSearched(true);
     } catch (error) {
       setError('Failed to fetch articles. Please try again.');
     } finally {
@@ -48,204 +49,225 @@ export default function SearchPage() {
     }
   };
 
-  useEffect(() => {
-    console.log(results)
-  }, [results]);
+  const handleSummarize = async (articles) => {
+    const titles = articles.map(article => article.title).join(', ');
 
-  if (results) {
-    return (
-      <SearchContainer>
-        <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100vh',
-          flex: 1,
-        }}
-        >
-          <ResultsColumn>
-            <SearchTitle>Search Results</SearchTitle>
-            {
-              results.map((result) => {
-                return (
-                  <ResultBar>
+    try {
+      const response = await fetch('http://10.1.119.206:5500/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          results: results,
+        }),
+      });
 
-                  </ResultBar>
-                )
-              })
-            }
-          </ResultsColumn>
-        </div>
-        <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100vh',
-          flex: 1,
-        }}
-        >
-          <ResultsColumn>
-            <SearchTitle>Summary</SearchTitle>
-          </ResultsColumn>
-        </div>
-      </SearchContainer>
-    )
-  } else {
-    return (
+      if (!response.ok) {
+        throw new Error('Error summarizing articles');
+      }
+
+      const data = await response.json();
+      setSummary(data.summary || 'No summary available.');
+    } catch (error) {
+      setError('Failed to summarize articles. Please try again.');
+    }
+  };
+
+  return (
+    <SearchContainer>
       <Container>
-        <motion.div>
-          <Column>
-            <GlobalLogoContainer onClick={handleSearch}>
-              <Image 
-              src={GlobePixelSearch}
-              style={{
+        <GlobalLogoContainer onClick={handleSearch}>
+          <Image 
+            src={GlobePixelSearch}
+            style={{
               width: '8vw',
               height: '10vh',
               scale: 3,
-              }}/>
-              <SearchText>SEARCH</SearchText>
-            </GlobalLogoContainer>
-            <SearchBarAndOptions>
-              <SearchBar 
-              placeholder='Would you like to know about GLOBE?Number of articles ---->'
-              onChange={(e) => setQuery(e.target.value)}
-              />
-              <CountBar
-              onChange={(e) => setResultsCount(parseInt(e.target.value))}
-              />
-            </SearchBarAndOptions>
-          </Column>
-        </motion.div>
+            }}
+          />
+          <SearchText>SEARCH</SearchText>
+        </GlobalLogoContainer>
+        <SearchBarAndOptions>
+          <SearchBar 
+            placeholder='Would you like to know about GLOBE?'
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <CountBar
+            type="number"
+            placeholder="0"
+            onChange={(e) => setResultsCount(parseInt(e.target.value, 10) || 5)}
+            min={1}
+          />
+        </SearchBarAndOptions>
       </Container>
-    );
-  }
+      <ResultsColumn>
+        <SearchTitle>Search Results</SearchTitle>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          results.length > 0 ? (
+            results.map((result, index) => (
+              <ResultBar key={index}>
+                <h1>{result.title || 'Untitled'}</h1>
+                <h1>{result.description || 'No description available'}</h1>
+                {result.url && (
+                  <h1 className='text-blue-500'>
+                    <a href={result.url} target="_blank" rel="noopener noreferrer">
+                      {result.url}
+                    </a>
+                  </h1>
+                )}
+              </ResultBar>
+            ))
+          ) : (
+            <p>No results found.</p>
+          )
+        )}
+      </ResultsColumn>
+      <SummaryColumn>
+        <SearchTitle>Summary</SearchTitle>
+        <SummaryBox>{summary || 'No summary available yet.'}</SummaryBox>
+      </SummaryColumn>
+    </SearchContainer>
+  );
 }
 
-const Container = styled.div`
+const SearchContainer = styled.div`
   background-image: url(${AIBackground?.src});
   background-size: cover;
   background-position: center;
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 40px;
-  padding: 20px;
-`
+  flex-direction: row;
+  gap: 50px;
+  padding: 50px;
+`;
 
-const Column = styled.div`
+const Container = styled.div`
   height: 100vh;
-  width: 50vw;
+  width: 40vw; /* Increased width */
   display: flex;
-  flex: 1;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 40px;
   padding: 20px;
-`
+`;
 
-const SearchText = styled.text`
-  font-size: 40px;
-  font-family: var(--font-pixel);
-  color: #0000000;
-`
 const GlobalLogoContainer = styled.div`
   background-color: silver;
-  height: 40vh;
-  width: 20vw;
+  height: 30vh; /* Reduced height for better fit */
+  width: 30vw; /* Increased width */
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
   flex-direction: column;
   gap: 10px;
-`
-const SearchTitle = styled.text`
-font-family: var(--font-pixel);
-font-size: 50px;
-text-align: center;
-color: black;
-`
+`;
+
+const SearchText = styled.span`
+  font-size: 40px;
+  font-family: var(--font-pixel);
+  color: #000;
+`;
+
+const SearchTitle = styled.span`
+  font-family: var(--font-pixel);
+  font-size: 50px;
+  text-align: center;
+  color: black;
+`;
+
 const SearchBar = styled.textarea`
   white-space: pre-line;
   overflow: hidden;
   height: 10vh;
   width: 30vw;
   border-radius: 10px;
-  border-width: 2px;
-  border-color: black;
+  border: 2px solid black;
   background-color: silver;
   color: black;
+  font-size: 25px;
   font-family: var(--font-pixel);
-  text-align: 'center';
   &::placeholder {
-    color: #000000; 
+    color: #000; 
     opacity: 1; 
   }
-  padding-left: 2px;
-`
+  padding: 4px;
+`;
 
 const CountBar = styled.input`
   height: 10vh;
   width: 5vw;
   border-radius: 10px;
-  border-width: 2px;
-  border-color: black;
+  border: 2px solid black;
   background-color: silver;
   color: black;
+  font-size: 25px;
   font-family: var(--font-pixel);
   text-align: center;
   &::placeholder {
-    color: #000000; 
+    color: #000; 
     opacity: 1; 
   }
   padding-left: 2px;
-`
+`;
+
 const SearchBarAndOptions = styled.div`
   height: 10vh;
-  width: 50vw;
-  margin-left: 10vw;
-  gap: 10px;
-  flex: 1;
+  width: 60vw; /* Increased width for better alignment */
   display: flex;
   flex-direction: row;
-`
-
-const SearchContainer = styled.div`
-background-image: url(${AIBackground?.src});
-background-size: cover;
-background-position: center;
-height: 100vh;
-width: 100vw;
-display: flex;
-flex: 1;
-align-items: center;
-flex-direction: row;
-gap: 50px;
-padding: 50px;
-`
-
+  gap: 10px;
+  justify-content: center; /* Center the fields */
+`;
 
 const ResultsColumn = styled.div`
   height: 100vh;
-  flex: 1;
+  width: 60vw; /* Increased width */
   background-color: silver;
-  border-color: black;
-  border-width: 2px;
+  border: 2px solid black;
   border-radius: 10px;
-  justify-content: center;
   display: flex;
   flex-direction: column;
-  overflowY: scroll;
-`
+  overflow-y: auto;
+  padding: 20px;
+`;
+
+const SummaryColumn = styled.div`
+  height: 100vh;
+  width: 60vw; /* Increased width */
+  background-color: silver;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
 
 const ResultBar = styled.div`
   border-radius: 5px;
-  border-width: 2px;
-  border-color: black;
-  height: 100px;
-`
+  border: 2px solid black;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: white;
+  overflow: hidden; /* Prevent overflow */
+  word-wrap: break-word; /* Allow long words or URLs to wrap */
+`;
+
+const SummaryBox = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  padding: 4px; /* Adjusted padding */
+  border: 1px solid black;
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  max-width: 100%; /* Prevent the box from exceeding the width of its container */
+  word-wrap: break-word; /* Allow long words or URLs to wrap to the next line */
+`;
