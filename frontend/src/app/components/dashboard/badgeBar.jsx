@@ -7,6 +7,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 export const BadgeBar = ({ badge_name, badge_number }) => {
+    const hardcodedBadgeDescriptions = [
+        "Mastered the trading and optimization of renewable energy resources to power a sustainable city.",
+        "Completed all eco-themed mini-games and challenges with top scores.",
+        "Exceled in protecting ecosystems and restoring habitats to save biodiversity.",
+    ];
     const [MouseEnter, setMouseEnter] = useState(false);
 
     const Badge = badge_number == 1 ? 
@@ -25,7 +30,7 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
             flex: 1,
         }}
         >
-            <Bar>
+            <Bar title={hardcodedBadgeDescriptions[badge_number - 1]}>
                 <motion.div
                 animate={MouseEnter ? {scale: [1.3, 1]} : {}}
                 transition={{
@@ -34,7 +39,7 @@ export const BadgeBar = ({ badge_name, badge_number }) => {
                     repeatType: 'loop'
                 }}
                 >
-                    <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 16, marginLeft: '4.5vw'}}/>
+                    <Image alt={badge_name} src={Badge} style={{height: '1vh', width: '1vw', scale: 16, marginLeft: '4.5vw'}}/>
                 </motion.div>
                 <BarText>{badge_name}</BarText>
             </Bar>
