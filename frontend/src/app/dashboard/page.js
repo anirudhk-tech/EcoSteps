@@ -11,25 +11,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
 import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
+import { createClient } from '../utils/supabase/client';
 
 
 export default function Dashboard() {
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const fetch_user = () => {
-  //     const supabase = createClient()                          // NEED API. SERVER FUNCTIONS WONT WORK IN CLIENT.
-
-  //     const { data, error } = supabase.auth.getUser()
-  //     if (error || !data?.user) {
-  //       redirect('/')
-  //     } else {
-  //       setUser(data.user);
-  //     }
-  //   };
-
-  //   fetch_user()
-  // }, []);
 
   const router = useRouter();
 
@@ -41,6 +26,13 @@ export default function Dashboard() {
 
   const streak_days = 100;
   const currency_count = 1976051;
+
+
+  const handleSignout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/signin');
+  }
 
   return (
     <>
@@ -81,6 +73,11 @@ export default function Dashboard() {
           <Link href={'/classroom'}>
             <NavigationText>Classroom</NavigationText>
           </Link>
+          <button onClick={handleSignout}
+          className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+          >
+            Sign Out
+          </button>
         </ProfileContainer>
       </ProfileColumn>
       <GeneralColumn>

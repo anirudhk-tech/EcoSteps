@@ -49,19 +49,29 @@ const SignIn = () => {
           <form id="user_login">
             <FormPrompt>Email</FormPrompt>
             <InputWrapper>
-              <input id="email" name="email" type="email" required />
+              <input id="email" name="email" type="email" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
             <FormPrompt>Password</FormPrompt>
             <InputWrapper>
-              <input id="password" name="password" type="password" required />
+              <input id="password" name="password" type="password" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
             {/* Selection: teacher or student */}
             <FormPrompt>Are you a teacher or student?</FormPrompt>
             <InputWrapper>
-              <input id="role" name="role" type="text" required />
+              <input id="role" name="role" type="text" required className='input' style={{width: '80%', padding: '10px', fontSize: '16px', border: '2px solid #FFFFFF', backgroundColor: 'rgba(201, 201, 201, 1)', borderRadius: '5px', boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'}} />
             </InputWrapper>
-            <button formAction={login}> Login </button>
-            <button formAction={signup}> Sign Up </button>
+            <ButtonWrapper>
+              <button formAction={login} className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+              > 
+                Login 
+              </button>
+            </ButtonWrapper>
+            <ButtonWrapper>
+              <button formAction={signup} className='button' style={{marginTop: '5vh', width: '10vw', height: '5vh', fontSize: '20px', fontFamily: 'var(--font-pixel)', backgroundColor: 'rgb(209,201,196)', color: 'black', border: '2px solid black', borderRadius: '100px', cursor: 'pointer'}}
+              > 
+                Sign Up 
+              </button>
+            </ButtonWrapper>
           </form>
           <BeginBox>
             <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>

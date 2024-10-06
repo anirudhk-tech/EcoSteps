@@ -38,4 +38,5 @@ export const DaisyLogo = ({ marginTop }) => {
 const StoreName = styled.text`
     font-family: var(--font-pixel);
     font-size: 25px;
+    color: white;
 `
