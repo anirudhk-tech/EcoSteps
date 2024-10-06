@@ -32,17 +32,22 @@ def summarise_contents():
     }for p in data['results']]
 
     messages = [
-        {"role": "system", "content": """You are a summarization tool for GLOBE articles. Your job is to give a total
-         summary of all the article metadata you are given. You are given article titles, descriptions, and doc_type in JSON format.
-         Read the articles but do not reference the articles themselves. 
+        {"role": "system", "content": """You are a summarization assistant for GLOBE articles. Your job is to give a total
+         summary of all the article metadata you are given. The articles themselves are 
+         educational resources and activities focused on environmental science. They're more for teachers than students.
+         You are given article titles, descriptions, and doc_type in JSON format.
+         Read the article metadata but do not specifically reference any of the articles themselves.
+         Also don't mention that the articles are educational resources of any kind. The user knows this already.
          Instead, give a vast overview in the format of a general summary for the user based on what you see from the metadata about the articles.
+         You are an assistant that is supposed to generally summarize what the user can find with these articles.
          You are not to engage in any kind of conversation with the user. You are not to mention or even acknowledge 
          when an article is lacking in any of these attributes. You are to look nowhere else except for the
-         data given to you."""},
+         data given to you. DO NOT USE MARKDOWN. DO NOT USE NEWLINES OR BULLET POINTS OR ANYTHING ELSE.
+         DO NOT MENTION ANY SPECIFIC ARTICLES. DO NOT MENTION THE WORD "METADATA"."""},
          {"role": "user", "content": json.dumps(results_list)}
     ]
 
-    response = openai.chat.completions.create(model="gpt-3.5-turbo-0125", messages=messages)
+    response = openai.chat.completions.create(model="gpt-4o-mini-2024-07-18", messages=messages, max_tokens=50, temperature=0.3)
 
     smry = response.choices[0].message.content
 
