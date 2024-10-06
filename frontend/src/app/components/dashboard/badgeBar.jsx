@@ -58,4 +58,5 @@ const BarText = styled.text`
     font-size: 30px;
     font-family: var(--font-pixel);
     color: black;
+    cursor: default;
 `
