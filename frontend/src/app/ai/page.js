@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import styles from '../styles/SearchPage.module.css'
+import styles from '../styles/SearchPage.module.css';
 
 export default function SearchPage() {
   const [query, setQuery] = useState('');
@@ -22,8 +22,8 @@ export default function SearchPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          question: query,  // Your question here
-          results: resultsCount,  // Number of results to fetch
+          question: query,
+          results: resultsCount,
         }),
       });
 
@@ -32,7 +32,7 @@ export default function SearchPage() {
       }
 
       const data = await response.json();
-      setResults(data.articles || []);
+      setResults(data.results || []);
     } catch (error) {
       setError('Failed to fetch articles. Please try again.');
     } finally {
@@ -74,11 +74,14 @@ export default function SearchPage() {
         {results.length > 0 ? (
           results.map((result, index) => (
             <div key={index} className={styles.resultItem}>
-              <h3>{result.title}</h3>
-              <p>{result.description}</p>
-              <a href={result.link} target="_blank" rel="noopener noreferrer">
-                Read more
-              </a>
+              <h3>{result.title || 'Untitled'}</h3>
+              <p>{result.description || 'No description available'}</p>
+              <p><strong>Document Type:</strong> {result.doc_type || 'Unknown'}</p>
+              {result.url && (
+                <a href={result.url} target="_blank" rel="noopener noreferrer">
+                  Read more
+                </a>
+              )}
             </div>
           ))
         ) : (
