@@ -4,9 +4,15 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Arrow from '../public/web assets/arrow.png';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [globePressed, setGlobePressed] = useState(false);
+  const router = useRouter();
+
+  const handleGlobeClick = () => {
+    router.push('/ai');
+  }
 
   return (
       <Container>
@@ -103,7 +109,7 @@ export default function Home() {
             }}
             >
               <Scroll
-              onClick={() => setGlobePressed(true)}
+              onClick={handleGlobeClick} //setGlobePressed(true)}
               style={{
                 boxShadow: '10px 10px darkred',
               }}
