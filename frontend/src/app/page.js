@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <motion.div
-      animate={pressed ? {scale: 100} : {}}
+      animate={pressed ? {scale: 100, opacity: 0.0} : {}}
       transition={{
         type: "spring",
         stiffness: 5,
@@ -133,17 +133,22 @@ const GroupNames = styled.text`
 `
 
 const StartText = styled.text`
-  position: absolute;
-  margin-left: 44.5vw;
-  margin-top: 67vh;
   font-family: var(--font-pixel);
   font-color: white;
+  width: 20vw;
+  height: 40vh;
+  font-size: 5vh;
+  margin-left: 37.75%;
+  position: absolute;
+  text-align: center;
+  padding-top: 12vh;
+  margin-top: 30%;
 `
 
 const StartButtonStyle = {
+  position: 'absolute',
   height: '40vh',
   width: '20vw',
-  position: 'absolute',
-  marginLeft: '37vw',
-  marginTop: '75vh',
+  marginLeft: '37.5%',
+  marginTop: '30%',
 }
