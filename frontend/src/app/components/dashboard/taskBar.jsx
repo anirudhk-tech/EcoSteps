@@ -5,13 +5,45 @@ import Topaz from '../../public/web assets/topaz.png';
 import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-export const TaskBar = ({ desc, badge_number }) => {
+export const TaskBar = ({ desc, badge_number, setCompleted }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
 
-    const Badge = badge_number == 1 ? 
-                    Diamond : badge_number == 2 ?
+    const Badge = badge_number % 3 == 1 ? 
+                    Diamond : badge_number % 3 == 2 ?
                         Ruby : Topaz
+
+    useEffect(() => {
+        const user = async () => {
+          const supabase = createClient();
+          const { data, error } = await supabase.auth.getUser();
+          if (error || !data?.user) {
+            router.push('/signin');
+            return;
+          }
+          setEmail(data.user.email);
+        }
+        user();
+      }, []);
+    
+      const completeTask = async (id) => {
+        try {
+          const response = await fetch(`http://localhost:4000/tasks/${id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+          });
+          if (!response.ok) {
+            throw new Error('Failed to complete task');
+          }
+          const data = await response.json();
+          console.log("Task completed successfully", data);
+        } catch (err) {
+          setError(err.message);
+        }
+      }
     return (
         <motion.div
         onMouseEnter={() => setMouseEnter(true)}
@@ -27,7 +59,12 @@ export const TaskBar = ({ desc, badge_number }) => {
             flex: 1,
         }}
         >
-            <Bar>
+            <Bar
+            onClick={() => {
+                completeTask(badge_number)
+                setCompleted(badge_number)
+            }}
+            >
                 <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 20, marginLeft: '4vw', marginBottom: '2vh'}}/>
                 <BarText>{MouseEnter ? "Complete?" : desc}</BarText>
             </Bar>

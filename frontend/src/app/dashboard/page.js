@@ -10,7 +10,6 @@ import { BadgeBar } from '../components/dashboard/badgeBar';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
-import Navbar from '../components/Navbar';
 import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
 
 
@@ -45,7 +44,6 @@ export default function Dashboard() {
 
   return (
     <>
-    <Navbar/>
     <Container>
       <ProfileColumn>
         <LogoContainer>
@@ -159,7 +157,7 @@ const ProfileColumn = styled.div`
   flex-direction: column;
   flex: 3;
   height: 100vh;
-  gap: 10vh;
+  gap: 5vh;
   padding-bottom: 20vh;
 `
 
@@ -168,7 +166,7 @@ const GeneralColumn = styled.div`
   flex-direction: column;
   flex: 4;
   height: 100vh;
-  gap: 10vh;
+  gap: 5vh;
   padding-bottom: 20vh;
 `
 
@@ -177,7 +175,7 @@ const CurrencyColumn = styled.div`
   flex-direction: column;
   flex: 2;
   height: 100vh;
-  gap: 10vh;
+  gap: 5vh;
   padding-bottom: 50vh;
 `
 

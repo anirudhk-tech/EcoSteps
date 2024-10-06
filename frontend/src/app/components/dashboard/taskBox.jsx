@@ -1,30 +1,76 @@
 import styled from "styled-components";
 import { TaskBar } from "./taskBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createClient } from '../../utils/supabase/client';
 
 export const TasksBox = () => {
-    const [hoveredTask, setHoveredTask] = useState(null);
-
-    const tasks = [
-        "Don't use a plastic water bottle today",
-        "Go for a 15 minute walk",
-        "Read a GLOBE article",
-    ]
+    const [completedTask, setCompletedTask] = useState(null);
+    const [tasks, setTasks] = useState([]);
+    const [email, setEmail] = useState('');
+    const supabase = createClient();
     
-    if (!hoveredTask) {
-        return (
-            <Container>
-                {
-                tasks.map((task, idx) => (
-                    <TaskBar key={idx} desc={task} badge_number={idx + 1} taskState={setHoveredTask}/>
-                ))
-                }
-            </Container>
-        )
-    } else {
-        <Container>
-        </Container>
+    const FetchUser = async () => {
+        const { data, error } = await supabase.auth.getUser();
+        if (error || !data?.user) {
+          throw new Error('Failed to fetch user');
+        }
+      
+        setEmail(data.user.email);
+    };
+
+    const GetTasks = async () => {
+        try {
+            const response = await fetch('http://localhost:4000/tasks/', {
+                method: 'GET',
+            })
+            const data = await response.json();
+            setTasks(data.slice(0,3));
+        } catch (error) {
+            console.log("Error occurred while fetching tasks: ", error);
+        }
+    };
+
+    const GetRandom = async (id) => {
+        try {
+            const response = await fetch('http://localhost:4000/tasks/random', {
+                method: 'POST',
+                body: JSON.stringify({ email: email })
+            })
+            const task = await response.json();
+
+            setTasks([task, ...tasks.filter(task => task.id != id)]);
+        } catch (error) {
+            console.log("Error while changing tasks: ", error);
+        }
     }
+
+    useEffect(() => {
+        GetTasks();
+        FetchUser();
+    }, []);
+
+    useEffect(() => {
+        if (completedTask !== null) {
+            GetRandom(completedTask);
+        };
+    }, [completedTask]);
+
+    console.log(tasks);
+    
+    return (
+        <Container>
+            {
+            tasks.map((task) => (
+                <TaskBar 
+                key={task.id + 1} 
+                desc={task.task} 
+                badge_number={task.id} 
+                setCompleted={setCompletedTask}
+                />
+            ))
+            }
+        </Container>
+    ) 
 }
 
 const Container = styled.div`
