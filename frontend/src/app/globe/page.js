@@ -11,11 +11,16 @@ export default function Home() {
   return (
       <Container>
           <motion.div
-          animate={{y: 10}}
+          animate={globePressed ? { opacity: 0.0 } : {y: 10}}
           transition={{
-            repeat: Infinity,
-            repeatType: 'reverse',
-            duration: 2.0,
+            y: {
+              repeat: Infinity,
+              repeatType: 'reverse',
+              duration: 2.0,
+            },
+            opacity: {
+              duration: 1.0,
+            }
           }}
           style={{
             display: 'flex',
