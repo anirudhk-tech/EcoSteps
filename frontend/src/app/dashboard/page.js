@@ -42,12 +42,9 @@ export default function Dashboard() {
     wolfAvatarGold, wolfAvatarSilver, wolfAvatarBronze, wolfAvatarWood,
   ];
 
-  // Use state to keep track of the current avatar
   const [currentAvatar, setCurrentAvatar] = useState(bunnyAvatarSilver);
 
-  // Function to randomly switch to a new avatar
   const switchAvatar = () => {
-    // Generate a random index to select a new avatar
     const randomIndex = Math.floor(Math.random() * avatars.length);
     setCurrentAvatar(avatars[randomIndex]);
   };
@@ -76,11 +73,11 @@ export default function Dashboard() {
       <ProfileColumn>
         <LogoContainer>
           <motion.div
-              animate={{ y: [0, -10, 0] }} // Moves up 10 pixels and back down
+              animate={{ y: [0, -10, 0] }}
               transition={{
-                duration: 2, // Duration of the animation
-                repeat: Infinity, // Repeat indefinitely
-                repeatType: 'reverse', // Reverse back to the start
+                duration: 2, 
+                repeat: Infinity, 
+                repeatType: 'reverse', 
               }}
             >
               <Image 
@@ -99,10 +96,10 @@ export default function Dashboard() {
               src={currentAvatar}
               alt="Avatar"
               style={{
-                height: '25vh', // Set the height
-                width: '25vh', // Set the width
+                height: '25vh', 
+                width: '25vh',
               }}
-              onClick={switchAvatar} // Attach the click event to the function
+              onClick={switchAvatar}
             />
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
