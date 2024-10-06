@@ -37,13 +37,18 @@ const SignIn = () => {
         </TitleBox>
         <LoginBox>
           <form id="user_login">
-            <FormPrompt>Email/Username</FormPrompt>
+            <FormPrompt>Email</FormPrompt>
             <InputWrapper>
-            <input id="email" name="email" type="email" required />
+              <input id="email" name="email" type="email" required />
             </InputWrapper>
             <FormPrompt>Password</FormPrompt>
             <InputWrapper>
-            <input id="password" name="password" type="password" required />
+              <input id="password" name="password" type="password" required />
+            </InputWrapper>
+            {/* Selection: teacher or student */}
+            <FormPrompt>Are you a teacher or student?</FormPrompt>
+            <InputWrapper>
+              <input id="role" name="role" type="text" required />
             </InputWrapper>
             <button formAction={login}> Login </button>
             <button formAction={signup}> Sign Up </button>
