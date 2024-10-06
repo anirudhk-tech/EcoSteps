@@ -1,4 +1,7 @@
-import ClassroomBackground from '../public/background/classroomBacground.png'
+'use client'
+
+import ClassroomBackground from '../public/background/classroomBackground.png'
+import styled from 'styled-components';
 
 export default function ClassroomPage() {
     return (
