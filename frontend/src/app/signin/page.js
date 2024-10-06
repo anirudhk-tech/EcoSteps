@@ -45,6 +45,8 @@ const SignIn = () => {
             <InputWrapper>
             <input id="password" name="password" type="password" required />
             </InputWrapper>
+            <button formAction={login}> Login </button>
+            <button formAction={signup}> Sign Up </button>
           </form>
           <BeginBox>
             <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
