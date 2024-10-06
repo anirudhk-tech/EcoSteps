@@ -3,24 +3,27 @@ import styled from "styled-components"
 import MarketBackground from '../public/background/marketplaceBackground.png';
 import EcoCoin from '../public/web assets/ecoCoin.png';
 import Image from "next/image";
-import { EcoLogo } from "../components/marketplace/eco_logo";
-import Target from '../public/web assets/target(1).png';
+import { TargetLogo } from "../components/marketplace/target_logo";
+import { DaisyLogo } from "../components/marketplace/daisy_logo";
+import { PotteriLogo } from "../components/marketplace/pottery_logo";
 
 export default function Home () {
 
     return (
         <Container>
-            <EcoLogo marginTop={'2.5%'}/>
+            <TargetLogo marginTop={'2%'}/>
+            <DaisyLogo marginTop={'11%'}/>
+            <PotteriLogo marginTop={'20%'}/>
             <MoneyContainer>
                 <Image 
-                src={Target}
+                src={EcoCoin}
                 style={{
                     width: '7vw',
                     height: '15vh',
                     scale: 3,
                 }}
                 />
-                <MoneyText>12483748</MoneyText>
+                <MoneyText>1493</MoneyText>
             </MoneyContainer>
         </Container>
     )

@@ -6,7 +6,7 @@ import Ruby from '../../public/web assets/ruby.png';
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export const TaskBar = ({ desc, badge_number, setState }) => {
+export const TaskBar = ({ desc, badge_number }) => {
     const [MouseEnter, setMouseEnter] = useState(false);
 
     const Badge = badge_number == 1 ? 
@@ -29,7 +29,7 @@ export const TaskBar = ({ desc, badge_number, setState }) => {
         >
             <Bar>
                 <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 20, marginLeft: '4vw', marginBottom: '2vh'}}/>
-                <BarText>{desc}</BarText>
+                <BarText>{MouseEnter ? "Complete?" : desc}</BarText>
             </Bar>
         </motion.div>
     )
