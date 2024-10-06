@@ -2,19 +2,22 @@
 import { use, useEffect, useState } from 'react';
 import { Box, Card, Grid, Paper, Typography, CircularProgress, Alert, Button } from '@mui/material';
 import { createClient } from '../utils/supabase/client';
+import { useRouter } from 'next/navigation';
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [email, setEmail] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const user = async () => {
       const supabase = createClient();
       const { data, error } = await supabase.auth.getUser();
       if (error || !data?.user) {
-        throw new Error('Failed to fetch user');
+        router.push('/signin');
+        return;
       }
       setEmail(data.user.email);
     }
@@ -39,7 +42,7 @@ export default function TasksPage() {
 
   const completeTask = async (id) => {
     try {
-      const response = await fetch(`http://localhost:4000/${id}`, {
+      const response = await fetch(`http://localhost:4000/tasks/${id}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })

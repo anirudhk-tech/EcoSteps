@@ -32,16 +32,17 @@ export async function signup(formData) {
   // in practice, you should validate your inputs
   const data = {
     email: formData.get('email'),
-    password: formData.get('password')
+    password: formData.get('password'),
+    role: formData.get('role')
   }
 
   const { error } = await supabase.auth.signUp(data)
 
   try {
-    const response = await fetch('http://localhost:4000/signup', {
+    const response = await fetch('http://localhost:4000/users/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: data.email })
+      body: JSON.stringify({ email: data.email , role: data.role })
     });
 
     const res = await response.json();
@@ -55,6 +56,7 @@ export async function signup(formData) {
   }
 
   if (error) {
+    console.error('Error:', error)
     redirect('/error')
   }
 

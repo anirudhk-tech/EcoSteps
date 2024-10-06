@@ -10,6 +10,7 @@ import { BadgeBar } from '../components/dashboard/badgeBar';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
+import Navbar from '../components/Navbar';
 
 
 export default function Dashboard() {
@@ -42,6 +43,8 @@ export default function Dashboard() {
   const currency_count = 1976051;
 
   return (
+    <>
+    <Navbar/>
     <Container>
       <ProfileColumn>
         <LogoContainer>
@@ -116,6 +119,7 @@ export default function Dashboard() {
           </SubContainer>
       </CurrencyColumn>
     </Container>
+    </>
   )
 }
 
