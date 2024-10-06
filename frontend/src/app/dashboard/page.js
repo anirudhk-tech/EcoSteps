@@ -57,13 +57,19 @@ export default function Dashboard() {
           }}
           />
         </LogoContainer>
-        <ProfileContainer>
+        <ProfileContainer role='navigation'>
           <ProfileCircle></ProfileCircle>
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
           </Link>
           <Link href={'/classroom'}>
             <NavigationText>Classroom</NavigationText>
+          </Link>
+          <Link href={'/globe'}>
+            <NavigationText>Globe</NavigationText>
+          </Link>
+          <Link href={'/ai'}>
+            <NavigationText>AI</NavigationText>
           </Link>
         </ProfileContainer>
       </ProfileColumn>
