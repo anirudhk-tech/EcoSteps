@@ -1,9 +1,12 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Arrow from '../public/web assets/arrow.png';
+import Image from 'next/image';
 
 export default function Home() {
+  const [globePressed, setGlobePressed] = useState(false);
 
   return (
       <Container>
@@ -100,21 +103,41 @@ export default function Home() {
             </Scroll>
           </Column>
           <Column>
-            <Spacer></Spacer>
-            <Scroll
-            style={{
-              boxShadow: '10px 10px green',
+            <Spacer>
+              <motion.div
+                animate={{y: 20}}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                  duration: 2.0,
+                }}
+              >
+                <Image src={Arrow}/>
+              </motion.div>
+            </Spacer>
+            <motion.div
+            animate={globePressed ? {scale: 100} : {}}
+            transition={{
+              duration: 3.0,
             }}
             >
-              <Title
+              <Scroll
+              onClick={() => setGlobePressed(true)}
               style={{
-                color: 'green',
+                boxShadow: '10px 10px darkred',
               }}
-              >Agriculture</Title>
-              <Text>
-              The beauty of thriving farms, with their golden fields of wheat swaying in the breeze and vibrant vegetable patches bursting with color, represents the bounty of the earth and the hard work of farmers.
-              </Text>
-            </Scroll>
+              >
+                <Title
+                style={{
+                  color: 'purple',
+                }}
+                >GLOBE</Title>
+                <Text>
+                The GLOBE (Global Learning and Observations to Benefit the Environment) Program is an international science and education program 
+                that focuses on promoting scientific literacy and building connections between people passionate about the environment.
+                </Text>
+              </Scroll>
+            </motion.div>
             <Spacer></Spacer>
           </Column>
           <Column>
@@ -163,22 +186,21 @@ export default function Home() {
               The ozone layer acts as Earth’s protective shield, absorbing the sun's harmful ultraviolet radiation. However, human activities, such as industrial emissions and the use of ozone-depleting substances, have significantly threatened this crucial layer.
               </Text>
             </Scroll>
+            <Spacer></Spacer>
             <Scroll
             style={{
-              boxShadow: '10px 10px darkred',
+              boxShadow: '10px 10px green',
             }}
             >
               <Title
               style={{
-                color: 'purple',
+                color: 'green',
               }}
-              >GLOBE</Title>
+              >Agriculture</Title>
               <Text>
-              The GLOBE (Global Learning and Observations to Benefit the Environment) Program is an international science and education program 
-              that focuses on promoting scientific literacy and building connections between people passionate about the environment.
+              The beauty of thriving farms, with their golden fields of wheat swaying in the breeze and vibrant vegetable patches bursting with color, represents the bounty of the earth and the hard work of farmers.
               </Text>
             </Scroll>
-            <Spacer></Spacer>
           </Column>
         </motion.div>
       </Container>

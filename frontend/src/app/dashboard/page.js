@@ -60,6 +60,9 @@ export default function Dashboard() {
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
           </Link>
+          <Link href={'/classroom'}>
+            <NavigationText>Classroom</NavigationText>
+          </Link>
         </ProfileContainer>
       </ProfileColumn>
       <GeneralColumn>
