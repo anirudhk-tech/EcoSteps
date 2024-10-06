@@ -1,6 +1,7 @@
 'use client'
 import styled from 'styled-components';
 import OceanLandscape from '../public/background/oceanLandscape.png';
+import { useState } from 'react';
 import EcoStepsLogo from '../public/web assets/ecostepsLogo.png';
 import Image from 'next/image';
 import StreakFire from '../public/web assets/streakFire.png';
@@ -10,11 +11,43 @@ import { BadgeBar } from '../components/dashboard/badgeBar';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { TasksBox } from '../components/dashboard/taskBox';
-import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
 import { createClient } from '../utils/supabase/client';
+import bunnyAvatarGold from '../public/avatars/bunnyAvatarGold.png';
+import bunnyAvatarSilver from '../public/avatars/bunnyAvatarSilver.png';
+import bunnyAvatarBronze from '../public/avatars/bunnyAvatarBronze.png';
+import bunnyAvatarWood from '../public/avatars/bunnyAvatarWood.png';
+
+import birdAvatarGold from '../public/avatars/birdAvatarGold.png';
+import birdAvatarSilver from '../public/avatars/birdAvatarSilver.png';
+import birdAvatarBronze from '../public/avatars/birdAvatarBronze.png';
+import birdAvatarWood from '../public/avatars/birdAvatarWood.png';
+
+import fishAvatarGold from '../public/avatars/fishAvatarGold.png';
+import fishAvatarSilver from '../public/avatars/fishAvatarSilver.png';
+import fishAvatarBronze from '../public/avatars/fishAvatarBronze.png';
+import fishAvatarWood from '../public/avatars/fishAvatarWood.png';
+
+import wolfAvatarGold from '../public/avatars/wolfAvatarGold.png';
+import wolfAvatarSilver from '../public/avatars/wolfAvatarSilver.png';
+import wolfAvatarBronze from '../public/avatars/wolfAvatarBronze.png';
+import wolfAvatarWood from '../public/avatars/wolfAvatarWood.png';
 
 
 export default function Dashboard() {
+
+  const avatars = [
+    bunnyAvatarGold, bunnyAvatarSilver, bunnyAvatarBronze, bunnyAvatarWood,
+    birdAvatarGold, birdAvatarSilver, birdAvatarBronze, birdAvatarWood,
+    fishAvatarGold, fishAvatarSilver, fishAvatarBronze, fishAvatarWood,
+    wolfAvatarGold, wolfAvatarSilver, wolfAvatarBronze, wolfAvatarWood,
+  ];
+
+  const [currentAvatar, setCurrentAvatar] = useState(bunnyAvatarSilver);
+
+  const switchAvatar = () => {
+    const randomIndex = Math.floor(Math.random() * avatars.length);
+    setCurrentAvatar(avatars[randomIndex]);
+  };
 
   const router = useRouter();
 
@@ -40,11 +73,11 @@ export default function Dashboard() {
       <ProfileColumn>
         <LogoContainer>
           <motion.div
-              animate={{ y: [0, -10, 0] }} // Moves up 10 pixels and back down
+              animate={{ y: [0, -10, 0] }}
               transition={{
-                duration: 2, // Duration of the animation
-                repeat: Infinity, // Repeat indefinitely
-                repeatType: 'reverse', // Reverse back to the start
+                duration: 2, 
+                repeat: Infinity, 
+                repeatType: 'reverse', 
               }}
             >
               <Image 
@@ -59,13 +92,14 @@ export default function Dashboard() {
           </motion.div>
         </LogoContainer>
         <ProfileContainer>
-          <Image 
-              src={bunnyAvatarSilver} 
-              alt="Bunny Avatar" 
+          <Image
+              src={currentAvatar}
+              alt="Avatar"
               style={{
-                height: '25vh', // Set the height
-                width: '25vh', // Set the width
-              }} 
+                height: '25vh', 
+                width: '25vh',
+              }}
+              onClick={switchAvatar}
             />
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
