@@ -5,10 +5,18 @@ import ForestLandscape from '../public/background/forestLandscape.png';
 import EcoStepsCoin from '../public/web assets/EcoStepsCoin.png';
 import { motion } from 'framer-motion';
 import { login, signup } from './actions'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SignIn = () => {
   const [start, setStart] = useState(false);
+  const formData = useRef(null);
+
+  const handleSignIn = () => { // Defaulting to signup. Need to add functionality to check whether a user already exists so we can route login/signup appropriately.
+    const sourceForm = document.getElementById('user_login');
+    formData.current = new FormData(sourceForm);
+    
+    signup(formData.current);
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,7 +36,7 @@ const SignIn = () => {
           <Title>EcoSteps Login</Title>
         </TitleBox>
         <LoginBox>
-          <form>
+          <form id="user_login">
             <FormPrompt>Email/Username</FormPrompt>
             <InputWrapper>
             <input id="email" name="email" type="email" required />
@@ -40,25 +48,24 @@ const SignIn = () => {
           </form>
           <BeginBox>
             <BeginPrompt>PRESS BELOW TO BEGIN</BeginPrompt>
-            <motion.div 
-              style={{marginTop: '-15vh'}}
-              animate={{marginTop: '-20vh'}}
-              transition={{
-                duration: '0.8',
-                repeat: Infinity,
-                repeatType: 'reverse',
-              }}
-              >
-                <form>
-                  <button formAction={signup}>
+            <form>
+              <motion.div 
+                style={{marginTop: '-15vh'}}
+                animate={{marginTop: '-25vh'}}
+                transition={{
+                  duration: '0.8',
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                }}
+                >
                     <Image 
-                    src={EcoStepsCoin} 
+                    src={EcoStepsCoin}
+                    onClick={handleSignIn}
                     alt="Click to begin!" 
-                    style={{scale: 0.7, height: '70vh'}}
+                    style={{scale: 0.5, height: '80vh'}}
                     />
-                  </button>
-                </form>
-            </motion.div>
+              </motion.div>
+            </form>
           </BeginBox>
         </LoginBox>
       </Container>
