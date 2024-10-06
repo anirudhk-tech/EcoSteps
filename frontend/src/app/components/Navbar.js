@@ -3,7 +3,7 @@ import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   return (
-    <nav className={styles.navbar}>
+    <nav role='navigation' className={styles.navbar}>
       <div className={styles.navItems}>
         <Link href="/articles">
           <p className={styles.navLink}>Articles</p>

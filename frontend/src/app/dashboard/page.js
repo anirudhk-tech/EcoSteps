@@ -48,7 +48,7 @@ export default function Dashboard() {
     <Container>
       <ProfileColumn>
         <LogoContainer>
-          <Image 
+          <Image role='button'
           onClick={() => router.push('/globe')}
           src={EcoStepsLogo}
           style={{

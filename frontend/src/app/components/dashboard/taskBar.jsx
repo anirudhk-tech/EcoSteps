@@ -26,6 +26,7 @@ export const TaskBar = ({ desc, badge_number }) => {
             display: 'flex',
             flex: 1,
         }}
+        role='button'
         >
             <Bar>
                 <Image src={Badge} style={{height: '1vh', width: '1vw', scale: 20, marginLeft: '4vw', marginBottom: '2vh'}}/>
