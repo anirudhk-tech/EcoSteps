@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '../utils/supabase/server'
 import { Box, Button, Grid, Paper, Typography } from '@mui/material'
 import Link from 'next/link'
+import Navbar from '../components/Navbar'
 
 export default async function Dashboard() {
   const supabase = createClient()
@@ -13,6 +14,7 @@ export default async function Dashboard() {
 
   return (
     <Box>
+      <Navbar/>
       <Box p={3}>
         <Typography variant="h4" component="h1" gutterBottom>
           Hello {data.user.email}!
