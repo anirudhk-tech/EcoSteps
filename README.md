@@ -43,12 +43,15 @@ Dependencies are now installed!
 ## Startup
 
 In the frontend (#1)
+
 ```npm run dev```
 
 In the backend (#2)
+
 ```npm run dev```
 
 In the backend/ai_stuff (#3)
+
 ```py working-server.py```
 
 This should start the entire app and activate all functionality.
