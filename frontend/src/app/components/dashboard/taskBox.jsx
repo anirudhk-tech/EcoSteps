@@ -64,14 +64,15 @@ export const TasksBox = () => {
 
     return (
         <Container>
-            {tasks.map((task) => (
+            {Array.isArray(tasks) ? 
+            tasks.map((task) => (
                 <TaskBar
                     key={task.id}
                     desc={task.task}
                     badge_number={task.id}
                     setCompleted={() => handleTaskCompletion(task.id)} // Pass the task ID when completed
                 />
-            ))}
+            )) : null}
         </Container>
     );
 };
