@@ -52,6 +52,6 @@ In the backend (#2)
 
 In the backend/ai_stuff (#3)
 
-```py working-server.py```
+```python3 working-server.py```
 
 This should start the entire app and activate all functionality.
