@@ -51,6 +51,7 @@ export default function Dashboard() {
 
   const router = useRouter();
 
+
   const badges = [
     "Ocean Defender",
     "Recycle Maniac",
@@ -104,7 +105,7 @@ export default function Dashboard() {
           <Link href={'/marketplace'}>
             <NavigationText>Marketplace</NavigationText>
           </Link>
-          <Link href={'/classroom'}>
+          <Link href={'/create-class'}>
             <NavigationText>Classroom</NavigationText>
           </Link>
           <button onClick={handleSignout}

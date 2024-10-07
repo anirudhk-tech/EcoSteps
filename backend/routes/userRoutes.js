@@ -1,6 +1,6 @@
 const express = require('express');
 const { createUser } = require('../services/userService');
-const { createClass, getStudentsById } = require('../services/classService');
+const { createClass, getStudentsById, getClasses } = require('../services/classService');
 const { getUserTasks } = require('../services/taskService');
 const router = express.Router();
 
@@ -40,6 +40,16 @@ router.post('/createclass', async (req, res) => {
   try {
     const newClass = await createClass(teacher, goal);
     res.status(201).json({ message: 'Class created successfully', newClass });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//get all classes
+router.get('/classes', async (req, res) => {
+  try {
+    const classes = await getClasses();
+    res.status(200).json(classes);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -14,6 +14,18 @@ const createClass = async (teacher, goal) => {
   return user;
 };
 
+const getClasses = async () => {
+  const { data: classes, error } = await supabase
+    .from('classes')
+    .select('*');
+
+  if (error) {
+    throw error;
+  }
+
+  return classes;
+}
+
 // Get students in a class
 const getStudentsById = async (teacher) => {
   const { data: students, error } = await supabase
@@ -29,6 +41,6 @@ const getStudentsById = async (teacher) => {
 };
 
 module.exports = {
-  createClass, getStudentsById
+  createClass, getStudentsById, getClasses
 };
 
