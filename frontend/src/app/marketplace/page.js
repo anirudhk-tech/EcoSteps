@@ -11,9 +11,9 @@ export default function Home () {
 
     return (
         <Container>
-            <TargetLogo marginTop={'2%'}/>
-            <DaisyLogo marginTop={'11%'}/>
-            <PotteriLogo marginTop={'20%'}/>
+            <TargetLogo marginTop={'7%'}/>
+            <DaisyLogo marginTop={'15%'}/>
+            <PotteriLogo marginTop={'35%'}/>
             <MoneyContainer>
                 <Image 
                 src={EcoCoin}
