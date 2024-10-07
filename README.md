@@ -18,5 +18,7 @@ Then, change directory to backend in #2 and #3:
 ```cd backend```
 
 In the frontend directory, run:
+
 ```npm i```
+
 ```npm run dev```
