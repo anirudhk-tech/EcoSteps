@@ -7,7 +7,7 @@ Prerequisites:
 2. Node.js and NPM
 
 ## Changing Directories
-Open three terminals in EcoSteps project root. For reference: #1, #2, #3
+Open three terminals in EcoSteps project root. For reference: terminal #1, terminal #2, terminal #3
 
 Then, change directory to frontend in #1:
 
