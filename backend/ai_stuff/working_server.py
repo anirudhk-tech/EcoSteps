@@ -9,7 +9,7 @@ with open("secrets.json", 'r') as f:
     secrets = json.load(f)
 
 openai.api_key = secrets["openai_key"]
-uri = secrets["mongo_uri"]
+uri = 'mongodb+srv://regular_user:regular_user@nasahack.ghumh.mongodb.net/?retryWrites=true&w=majority&appName=NASAHack'
 client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nasa"]
 collection = db["article_collection"]
