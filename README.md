@@ -28,6 +28,7 @@ In the frontend directory (#1), run:
 ```npm i```
 
 In the backend directory (#2), run:
+
 ```npm i```
 
 In the backend/ai_stuff directory (#3), run:
