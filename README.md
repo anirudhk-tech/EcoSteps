@@ -2,7 +2,7 @@
 
 To run the app...
 
-Prerequisits: 
+Prerequisites: 
 1. Python3 and PIP
 2. Node.js and NPM
 
