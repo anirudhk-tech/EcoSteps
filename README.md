@@ -35,6 +35,8 @@ In the backend/ai_stuff directory (#3), run:
 
 ```pip install pymongo openai flask certifi```
 
+
+
 Dependencies are now installed!
 
 
