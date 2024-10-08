@@ -5,6 +5,7 @@ To run the app...
 Prerequisites: 
 1. Python3 and PIP
 2. Node.js and NPM
+3. An OpenAI api key with credits
 
 ## Changing Directories
 Open three terminals in EcoSteps project root. For reference: terminal #1, terminal #2, terminal #3
@@ -39,6 +40,10 @@ In the backend/ai_stuff directory (#3), run:
 
 Dependencies are now installed!
 
+## Activating AI
+In backend/ai_stuff/working_server.py:
+
+You'll have to replace the openai.api_key variable to an active OpenAI key of your own.
 
 ## Startup
 
