@@ -11,6 +11,7 @@ import { createClient } from "../../utils/supabase/client";
 export const TaskBar = ({ desc, badge_number, setCompleted }) => {
     const [email, setEmail] = useState(null);
     const [MouseEnter, setMouseEnter] = useState(false);
+    const [error, setError] = useState(null);
 
     const Badge = badge_number % 3 == 1 ? 
                     Diamond : badge_number % 3 == 2 ?

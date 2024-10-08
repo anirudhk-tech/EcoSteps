@@ -1,39 +1,37 @@
+'use client'
 import styled from "styled-components";
 import { TaskBar } from "./taskBar";
 import { useEffect, useState } from "react";
 import { createClient } from '../../utils/supabase/client';
+import { useRouter } from 'next/navigation';
 
 export const TasksBox = () => {
     const [tasks, setTasks] = useState([]);
-    const [email, setEmail] = useState('test@uic.edu');
-
+    const router = useRouter();
+    
     useEffect(() => {
-        const user = async () => {
-            const supabase = createClient();
-            const { data, error } = await supabase.auth.getUser();
-            if (error || !data?.user) {
-              router.push('/signin');
-              return;
-            }
-            setEmail(data.user.email);
-        }
-        const GetTasks = async (email) => {
+        const GetTasks = async () => {
             try {
-                const response = await fetch('http://localhost:4000/users/tasks', {
-                    method: 'POST',
-                    body: JSON.stringify({ email: email }), // Use email here
+                const supabase = createClient();
+                const info = await supabase.auth.getSession()
+                if (!info) {
+                    router.push('/signin');
+                    return;
+                }
+                const response = await fetch('http://localhost:4000/tasks', {
+                    method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
                 const data = await response.json();
+                console.log("Tasks fetched successfully: ", data);
                 setTasks(data);
             } catch (error) {
                 console.log("Error occurred while fetching tasks: ", error);
             }
         };
-        user();
-        GetTasks(email); // Call GetTasks with the email
+        GetTasks();
     }, []);
 
 
@@ -64,8 +62,7 @@ export const TasksBox = () => {
 
     return (
         <Container>
-            {Array.isArray(tasks) ? 
-            tasks.map((task) => (
+            {tasks?.map((task) => (
                 <TaskBar
                     key={task.id}
                     desc={task.task}

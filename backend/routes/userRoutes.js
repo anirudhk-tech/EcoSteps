@@ -81,6 +81,7 @@ router.post('/tasks', async (req, res) => {
 
   try {
     const tasks = await getUserTasks(email);
+    console.log("Tasks fetched successfully: ", tasks);
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).json({ error: error.message });

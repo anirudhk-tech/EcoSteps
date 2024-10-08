@@ -10,7 +10,7 @@ const getTasks = async () => {
     throw error;
   }
 
-  return tasks;
+  return tasks.slice(0, 3);
 };
 
 // Get a random task from the list that is not already completed
