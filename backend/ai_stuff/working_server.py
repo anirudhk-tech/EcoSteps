@@ -8,7 +8,7 @@ import certifi
 with open("secrets.json", 'r') as f:
     secrets = json.load(f)
 
-openai.api_key = secrets["openai_key"]
+openai.api_key = secrets["openai_key"] # Replace this with your openai key
 uri = 'mongodb+srv://regular_user:regular_user@nasahack.ghumh.mongodb.net/?retryWrites=true&w=majority&appName=NASAHack'
 client = MongoClient(uri, tlsCAFile=certifi.where())
 db = client["nasa"]
